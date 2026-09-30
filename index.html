@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Jubilant Design Options</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,500&family=Poppins:wght@400;500;600&display=swap">
+<style>
+  /* Phone-first review page: a sticky A–F switcher, then one section per
+     option with its palette, fonts and a phone/computer preview. */
+  :root {
+    --bg: #eef0f2;
+    --surface: #ffffff;
+    --ink: #16161a;
+    --muted: #5d5f66;
+    --line: #dfe1e5;
+    --gold: #9a7443;
+    --gold-soft: rgba(154, 116, 67, 0.12);
+    --frame: #111114;
+    --display: 'Playfair Display', Georgia, serif;
+    --body: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #111215; --surface: #1a1b20; --ink: #eeeef1; --muted: #a3a5ad;
+      --line: #2b2d33; --gold: #d2ad70; --gold-soft: rgba(210, 173, 112, 0.14); --frame: #000000;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #111215; --surface: #1a1b20; --ink: #eeeef1; --muted: #a3a5ad;
+    --line: #2b2d33; --gold: #d2ad70; --gold-soft: rgba(210, 173, 112, 0.14); --frame: #000000;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 1120px; margin: 0 auto; padding-inline: 16px; padding-block: 28px 60px; }
+
+  header.intro { display: flex; flex-direction: column; gap: 12px; padding-block: 12px 22px; max-width: 640px; }
+  .logo { height: 40px; width: auto; align-self: flex-start; filter: brightness(0); }
+  :root[data-theme="dark"] .logo { filter: none; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .logo { filter: none; } }
+  h1 { font-family: var(--display); font-weight: 600; font-size: clamp(30px, 7vw, 46px); line-height: 1.1; margin: 0; text-wrap: balance; }
+  h1 em { color: var(--gold); font-weight: 500; }
+  .lead { margin: 0; color: var(--muted); font-size: 16px; }
+
+  /* Sticky option switcher */
+  .switcher {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+    display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none;
+    padding: 10px 16px; margin-inline: -16px;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .switcher::-webkit-scrollbar { display: none; }
+  .switcher a {
+    flex: 0 0 auto; display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 14px; border-radius: 12px; background: var(--surface);
+    border: 1px solid var(--line); color: var(--ink); text-decoration: none;
+    font-size: 13.5px; font-weight: 500; white-space: nowrap;
+  }
+  .switcher a b { font-family: var(--display); color: var(--gold); font-size: 16px; }
+  .switcher a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  /* Option sections */
+  .option { scroll-margin-top: 70px; padding-block: 34px 10px; border-bottom: 1px solid var(--line); }
+  .opt-head { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  @media (min-width: 860px) { .opt-head { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 40px; } }
+  .opt-title { display: flex; align-items: baseline; gap: 14px; }
+  .letter { font-family: var(--display); font-style: italic; font-weight: 500; font-size: 52px; line-height: 1; color: var(--gold); }
+  h2 { font-family: var(--display); font-weight: 600; font-size: clamp(26px, 5.5vw, 34px); line-height: 1.15; margin: 0; }
+  .mood { margin: 10px 0 0; color: var(--muted); }
+  .best { margin: 10px 0 0; font-size: 14px; }
+  .best b { color: var(--gold); font-weight: 600; }
+
+  .spec { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+  .label { font-size: 11.5px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .swatches { display: flex; flex-wrap: wrap; gap: 10px 14px; margin-top: 6px; }
+  .sw { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted); }
+  .sw i { width: 26px; height: 26px; border-radius: 8px; border: 1px solid var(--line); flex-shrink: 0; }
+  .sw b { display: block; color: var(--ink); font-weight: 500; font-size: 13px; line-height: 1.2; }
+  .fonts { font-size: 14px; }
+  details { font-size: 14px; }
+  summary { cursor: pointer; font-weight: 500; color: var(--gold); }
+  details ol { margin: 8px 0 0; padding-left: 20px; color: var(--muted); }
+
+  /* Preview */
+  .views { display: flex; gap: 8px; margin: 24px 0 14px; }
+  .views button {
+    font: inherit; font-size: 14px; font-weight: 500; padding: 10px 16px; border-radius: 12px;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer;
+  }
+  .views button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .preview { position: relative; overflow: hidden; max-height: 760px; border-radius: 18px; }
+  .preview.open { max-height: none; }
+  .preview::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 160px; pointer-events: none;
+    background: linear-gradient(180deg, transparent, var(--bg));
+  }
+  .preview.open::after { display: none; }
+  .shot-phone { display: block; width: 100%; max-width: 390px; margin: 0 auto; border-radius: 26px; border: 8px solid var(--frame); }
+  .shot-desktop { display: block; width: 100%; max-width: 100%; border-radius: 12px; border: 1px solid var(--line); }
+  .more { display: flex; justify-content: center; margin: 14px 0 24px; }
+  .more button {
+    font: inherit; font-size: 14px; font-weight: 600; padding: 12px 22px; border-radius: 12px;
+    border: 1px solid var(--gold); background: var(--gold-soft); color: var(--ink); cursor: pointer;
+  }
+
+  footer.choose { padding-block: 40px 10px; display: flex; flex-direction: column; gap: 10px; max-width: 640px; }
+  footer.choose h2 { font-size: clamp(24px, 5vw, 30px); }
+  footer.choose p { margin: 0; color: var(--muted); }
+
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+</head>
+<body>
+
+
+<div class="page">
+  <header class="intro">
+    <img class="logo" src="img/logo-white.png" alt="Jubilant Events &amp; Productions">
+    <h1>Choose your <em>website design</em></h1>
+    <p class="lead">Eight homepage designs for Jubilant Events &amp; Productions, each with its own layout, colours and fonts. They all use your real services, projects and event photos. Tap an option, switch between phone and computer view, then tell us the letter you like best.</p>
+  </header>
+
+  <nav class="switcher" aria-label="Design options">
+    <a href="#a"><b>A</b>Cinematic Glow</a>
+    <a href="#b"><b>B</b>Noir Showreel</a>
+    <a href="#c"><b>C</b>Bright Studio</a>
+    <a href="#d"><b>D</b>Grand Stage</a>
+    <a href="#e"><b>E</b>Luxe Minimal</a>
+    <a href="#f"><b>F</b>Festive Modern</a>
+    <a href="#g"><b>G</b>Midnight Pulse</a>
+    <a href="#h"><b>H</b>Live Frame</a>
+  </nav>
+
+  <section class="option" id="a" data-key="a">
+    <div class="opt-head">
+      <div>
+        <div class="opt-title"><span class="letter">A</span><h2>Cinematic Glow</h2></div>
+        <p class="mood">Light, warm and photo-led. A full-screen photo slideshow, softly glowing sections and frosted cards. The current website, refined.</p>
+        <p class="best"><b>Best for:</b> a welcoming feel that suits both corporate events and weddings.</p>
+      </div>
+      <div class="spec">
+        <div><span class="label">Colours</span><div class="swatches">
+          <span class="sw"><i style="background:#16150F"></i><span><b>Ink</b>#16150F</span></span>
+          <span class="sw"><i style="background:#AD8752"></i><span><b>Antique Gold</b>#AD8752</span></span>
+          <span class="sw"><i style="background:#F3DCB0"></i><span><b>Champagne</b>#F3DCB0</span></span>
+          <span class="sw"><i style="background:#FBF8F4"></i><span><b>Pearl</b>#FBF8F4</span></span>
+        </div></div>
+        <div class="fonts"><span class="label">Fonts</span><br>Playfair Display · Poppins</div>
+        <details><summary>Homepage structure</summary><ol><li>Hero photo slideshow</li><li>Our story + highlight reel</li><li>Services</li><li>Why choose us (dark band)</li><li>Wedding themes</li><li>Featured project</li><li>Clients</li><li>Enquiry band + footer</li></ol></details>
+      </div>
+    </div>
+    <div class="views" role="group" aria-label="Preview size"><button type="button" data-view="mobile" aria-pressed="true">Phone view</button><button type="button" data-view="desktop" aria-pressed="false">Computer view</button></div>
+    <div class="preview"><img class="shot-phone" src="img/a-mobile.jpg" alt="Option A on a phone" loading="lazy"><img class="shot-desktop" src="img/a-desktop.jpg" alt="Option A on a computer" loading="lazy" hidden></div>
+    <div class="more"><button type="button">Show full homepage</button></div>
+  </section>
+
+  <section class="option" id="b" data-key="b">
+    <div class="opt-head">
+      <div>
+        <div class="opt-title"><span class="letter">B</span><h2>Noir Showreel</h2></div>
+        <p class="mood">Dark, cinematic and high-end, like a stage just before the lights come up. Large editorial type, services as an index and full case studies.</p>
+        <p class="best"><b>Best for:</b> a bold, premium production-house image where the photos stand out most.</p>
+      </div>
+      <div class="spec">
+        <div><span class="label">Colours</span><div class="swatches">
+          <span class="sw"><i style="background:#0D0C0F"></i><span><b>Noir</b>#0D0C0F</span></span>
+          <span class="sw"><i style="background:#16151A"></i><span><b>Graphite</b>#16151A</span></span>
+          <span class="sw"><i style="background:#D6B77E"></i><span><b>Champagne</b>#D6B77E</span></span>
+          <span class="sw"><i style="background:#F3EFE7"></i><span><b>Ivory</b>#F3EFE7</span></span>
+        </div></div>
+        <div class="fonts"><span class="label">Fonts</span><br>Bodoni Moda · Manrope</div>
+        <details><summary>Homepage structure</summary><ol><li>Hero with key numbers</li><li>Services marquee</li><li>Services index</li><li>Selected work (3 case studies)</li><li>In-house production</li><li>How we work</li><li>Clients</li><li>Large enquiry footer</li></ol></details>
+      </div>
+    </div>
+    <div class="views" role="group" aria-label="Preview size"><button type="button" data-view="mobile" aria-pressed="true">Phone view</button><button type="button" data-view="desktop" aria-pressed="false">Computer view</button></div>
+    <div class="preview"><img class="shot-phone" src="img/b-mobile.jpg" alt="Option B on a phone" loading="lazy"><img class="shot-desktop" src="img/b-desktop.jpg" alt="Option B on a computer" loading="lazy" hidden></div>
+    <div class="more"><button type="button">Show full homepage</button></div>
+  </section>
+
+  <section class="option" id="c" data-key="c">
+    <div class="opt-head">
+      <div>
+        <div class="opt-title"><span class="letter">C</span><h2>Bright Studio</h2></div>
+        <p class="mood">Bright, modern and quick to scan. A split hero with a photo mosaic, a "What are you planning?" chooser and the enquiry form right on the homepage.</p>
+        <p class="best"><b>Best for:</b> turning visitors into enquiries fast, with a fresh, contemporary look.</p>
+      </div>
+      <div class="spec">
+        <div><span class="label">Colours</span><div class="swatches">
+          <span class="sw"><i style="background:#111115"></i><span><b>Ink</b>#111115</span></span>
+          <span class="sw"><i style="background:#EF8F5E"></i><span><b>Apricot</b>#EF8F5E</span></span>
+          <span class="sw"><i style="background:#FDE8DC"></i><span><b>Apricot Soft</b>#FDE8DC</span></span>
+          <span class="sw"><i style="background:#F3F4F6"></i><span><b>Mist</b>#F3F4F6</span></span>
+        </div></div>
+        <div class="fonts"><span class="label">Fonts</span><br>Syne · DM Sans</div>
+        <details><summary>Homepage structure</summary><ol><li>Hero + photo mosaic</li><li>Client logos</li><li>What are you planning? (tabs)</li><li>Recent work mosaic</li><li>Key numbers</li><li>Wedding themes</li><li>Enquiry form</li><li>Footer</li></ol></details>
+      </div>
+    </div>
+    <div class="views" role="group" aria-label="Preview size"><button type="button" data-view="mobile" aria-pressed="true">Phone view</button><button type="button" data-view="desktop" aria-pressed="false">Computer view</button></div>
+    <div class="preview"><img class="shot-phone" src="img/c-mobile.jpg" alt="Option C on a phone" loading="lazy"><img class="shot-desktop" src="img/c-desktop.jpg" alt="Option C on a computer" loading="lazy" hidden></div>
+    <div class="more"><button type="button">Show full homepage</button></div>
+  </section>
+
+  <section class="option" id="d" data-key="d">
+    <div class="opt-head">
+      <div>
+        <div class="opt-title"><span class="letter">D</span><h2>Grand Stage</h2></div>
+        <p class="mood">Immersive and photo-first. Full-width event photos with frosted-glass panels, a floating glass navbar and a services slider. Feels like walking into the event.</p>
+        <p class="best"><b>Best for:</b> showing the scale and energy of real events, like a showreel on a page.</p>
+      </div>
+      <div class="spec">
+        <div><span class="label">Colours</span><div class="swatches">
+          <span class="sw"><i style="background:#0B0B12"></i><span><b>Midnight</b>#0B0B12</span></span>
+          <span class="sw"><i style="background:#14141D"></i><span><b>Night Slate</b>#14141D</span></span>
+          <span class="sw"><i style="background:#E0B973"></i><span><b>Gold</b>#E0B973</span></span>
+          <span class="sw"><i style="background:#F5F3EF"></i><span><b>Pearl</b>#F5F3EF</span></span>
+        </div></div>
+        <div class="fonts"><span class="label">Fonts</span><br>DM Serif Display · Outfit</div>
+        <details><summary>Homepage structure</summary><ol><li>Full-screen hero + glass contact card</li><li>Glass key-numbers strip</li><li>Services photo slider</li><li>Full-width featured project</li><li>Full-width second project</li><li>In-house production (inventory tiles)</li><li>Wedding themes</li><li>Glass enquiry form over photo</li></ol></details>
+      </div>
+    </div>
+    <div class="views" role="group" aria-label="Preview size"><button type="button" data-view="mobile" aria-pressed="true">Phone view</button><button type="button" data-view="desktop" aria-pressed="false">Computer view</button></div>
+    <div class="preview"><img class="shot-phone" src="img/d-mobile.jpg" alt="Option D on a phone" loading="lazy"><img class="shot-desktop" src="img/d-desktop.jpg" alt="Option D on a computer" loading="lazy" hidden></div>
+    <div class="more"><button type="button">Show full homepage</button></div>
+  </section>
+
+  <section class="option" id="e" data-key="e">
+    <div class="opt-head">
+      <div>
+        <div class="opt-title"><span class="letter">E</span><h2>Luxe Minimal</h2></div>
+        <p class="mood">Quiet luxury, like a five-star hotel website. Generous white space, fine serif type, a centred logo and large photographs with thin captions.</p>
+        <p class="best"><b>Best for:</b> a refined, high-end image for premium corporate and wedding clients.</p>
+      </div>
+      <div class="spec">
+        <div><span class="label">Colours</span><div class="swatches">
+          <span class="sw"><i style="background:#1E1C1A"></i><span><b>Charcoal</b>#1E1C1A</span></span>
+          <span class="sw"><i style="background:#9A7447"></i><span><b>Bronze</b>#9A7447</span></span>
+          <span class="sw"><i style="background:#F5F4F1"></i><span><b>Porcelain</b>#F5F4F1</span></span>
+          <span class="sw"><i style="background:#FFFFFF"></i><span><b>White</b>#FFFFFF</span></span>
+        </div></div>
+        <div class="fonts"><span class="label">Fonts</span><br>Cormorant Garamond · Jost</div>
+        <details><summary>Homepage structure</summary><ol><li>Centred-logo navbar</li><li>Large headline + wide photograph</li><li>Our story + key numbers</li><li>Services in four groups</li><li>Selected work (editorial grid)</li><li>Our approach (quote)</li><li>Wedding themes</li><li>Contact details + enquiry form</li></ol></details>
+      </div>
+    </div>
+    <div class="views" role="group" aria-label="Preview size"><button type="button" data-view="mobile" aria-pressed="true">Phone view</button><button type="button" data-view="desktop" aria-pressed="false">Computer view</button></div>
+    <div class="preview"><img class="shot-phone" src="img/e-mobile.jpg" alt="Option E on a phone" loading="lazy"><img class="shot-desktop" src="img/e-desktop.jpg" alt="Option E on a computer" loading="lazy" hidden></div>
+    <div class="more"><button type="button">Show full homepage</button></div>
+  </section>
+
+  <section class="option" id="f" data-key="f">
+    <div class="opt-head">
+      <div>
+        <div class="opt-title"><span class="letter">F</span><h2>Festive Modern</h2></div>
+        <p class="mood">Bold, joyful and celebratory. Deep aubergine with marigold, a stack of tilted event photos, colour-blocked service tiles and a slanted marquee.</p>
+        <p class="best"><b>Best for:</b> standing out with energy and colour, especially for weddings and celebrations.</p>
+      </div>
+      <div class="spec">
+        <div><span class="label">Colours</span><div class="swatches">
+          <span class="sw"><i style="background:#24122E"></i><span><b>Aubergine</b>#24122E</span></span>
+          <span class="sw"><i style="background:#3A1D47"></i><span><b>Plum</b>#3A1D47</span></span>
+          <span class="sw"><i style="background:#F3A52F"></i><span><b>Marigold</b>#F3A52F</span></span>
+          <span class="sw"><i style="background:#F3EEF6"></i><span><b>Lilac Mist</b>#F3EEF6</span></span>
+        </div></div>
+        <div class="fonts"><span class="label">Fonts</span><br>Unbounded · Plus Jakarta Sans</div>
+        <details><summary>Homepage structure</summary><ol><li>Bold hero + photo stack</li><li>Slanted services marquee</li><li>Colour-blocked services</li><li>Recent projects cards</li><li>Key numbers band</li><li>Wedding themes (one colour each)</li><li>How we work (4 steps)</li><li>Enquiry card + footer</li></ol></details>
+      </div>
+    </div>
+    <div class="views" role="group" aria-label="Preview size"><button type="button" data-view="mobile" aria-pressed="true">Phone view</button><button type="button" data-view="desktop" aria-pressed="false">Computer view</button></div>
+    <div class="preview"><img class="shot-phone" src="img/f-mobile.jpg" alt="Option F on a phone" loading="lazy"><img class="shot-desktop" src="img/f-desktop.jpg" alt="Option F on a computer" loading="lazy" hidden></div>
+    <div class="more"><button type="button">Show full homepage</button></div>
+  </section>
+
+  <section class="option" id="g" data-key="g">
+    <div class="opt-head">
+      <div>
+        <div class="opt-title"><span class="letter">G</span><h2>Midnight Pulse</h2></div>
+        <p class="mood">Loud and energetic, in the style of MDNT. Black and white sections that alternate, huge condensed headlines with gold and violet highlights, sticker tags, a black-and-white behind-the-scenes strip and a circular enquiry block.</p>
+        <p class="best"><b>Best for:</b> a bold, youthful brand-activation feel that grabs attention instantly.</p>
+      </div>
+      <div class="spec">
+        <div><span class="label">Colours</span><div class="swatches">
+          <span class="sw"><i style="background:#0A0A0A"></i><span><b>Black</b>#0A0A0A</span></span>
+          <span class="sw"><i style="background:#FFFFFF"></i><span><b>White</b>#FFFFFF</span></span>
+          <span class="sw"><i style="background:#FFB627"></i><span><b>Marigold</b>#FFB627</span></span>
+          <span class="sw"><i style="background:#7B3FE4"></i><span><b>Royal Violet</b>#7B3FE4</span></span>
+        </div></div>
+        <div class="fonts"><span class="label">Fonts</span><br>Anton · Instrument Sans</div>
+        <details><summary>Homepage structure</summary><ol><li>Full-screen crowd hero + huge headline</li><li>Statement with highlighted words</li><li>For brands (black)</li><li>For celebrations (white)</li><li>From stages to full-scale productions</li><li>Case studies</li><li>Behind the scenes strip</li><li>Circular enquiry block + giant wordmark</li></ol></details>
+      </div>
+    </div>
+    <div class="views" role="group" aria-label="Preview size"><button type="button" data-view="mobile" aria-pressed="true">Phone view</button><button type="button" data-view="desktop" aria-pressed="false">Computer view</button></div>
+    <div class="preview"><img class="shot-phone" src="img/g-mobile.jpg" alt="Option G on a phone" loading="lazy"><img class="shot-desktop" src="img/g-desktop.jpg" alt="Option G on a computer" loading="lazy" hidden></div>
+    <div class="more"><button type="button">Show full homepage</button></div>
+  </section>
+
+  <section class="option" id="h" data-key="h">
+    <div class="opt-head">
+      <div>
+        <div class="opt-title"><span class="letter">H</span><h2>Live Frame</h2></div>
+        <p class="mood">Cinematic and minimal, in the style of Kaleida. Near-black pages, large thin capitals, statements set on fine grid lines, a Selected Work grid with project details and a city list in fading tones.</p>
+        <p class="best"><b>Best for:</b> a sleek, world-class production-company image that lets the event photos do the talking.</p>
+      </div>
+      <div class="spec">
+        <div><span class="label">Colours</span><div class="swatches">
+          <span class="sw"><i style="background:#0E0E0F"></i><span><b>Carbon</b>#0E0E0F</span></span>
+          <span class="sw"><i style="background:#18181A"></i><span><b>Graphite</b>#18181A</span></span>
+          <span class="sw"><i style="background:#ECEAE5"></i><span><b>Bone</b>#ECEAE5</span></span>
+          <span class="sw"><i style="background:#D9B87C"></i><span><b>Champagne</b>#D9B87C</span></span>
+        </div></div>
+        <div class="fonts"><span class="label">Fonts</span><br>Hanken Grotesk</div>
+        <details><summary>Homepage structure</summary><ol><li>Full-screen hero: Creating the unforgettable</li><li>Company intro</li><li>We do it live + wide photo</li><li>Experience (+) Impact: in person / on camera</li><li>Selected work grid</li><li>Services statement on a line grid</li><li>Cities we work in</li><li>Say hello footer</li></ol></details>
+      </div>
+    </div>
+    <div class="views" role="group" aria-label="Preview size"><button type="button" data-view="mobile" aria-pressed="true">Phone view</button><button type="button" data-view="desktop" aria-pressed="false">Computer view</button></div>
+    <div class="preview"><img class="shot-phone" src="img/h-mobile.jpg" alt="Option H on a phone" loading="lazy"><img class="shot-desktop" src="img/h-desktop.jpg" alt="Option H on a computer" loading="lazy" hidden></div>
+    <div class="more"><button type="button">Show full homepage</button></div>
+  </section>
+
+  <footer class="choose">
+    <h2>Which one do you like?</h2>
+    <p>Reply to RaRi Softworks with the letter of your favourite (A to H), plus anything you would change. You can also mix, for example "the layout of D with the colours of A".</p>
+  </footer>
+</div>
+
+<script>
+  document.querySelectorAll('.option').forEach(function (section) {
+    var preview = section.querySelector('.preview');
+    var phone = section.querySelector('.shot-phone');
+    var desktop = section.querySelector('.shot-desktop');
+    var more = section.querySelector('.more button');
+    section.querySelectorAll('.views button').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var isPhone = btn.dataset.view === 'mobile';
+        phone.hidden = !isPhone;
+        desktop.hidden = isPhone;
+        section.querySelectorAll('.views button').forEach(function (b) {
+          b.setAttribute('aria-pressed', String(b === btn));
+        });
+      });
+    });
+    more.addEventListener('click', function () {
+      var open = preview.classList.toggle('open');
+      more.textContent = open ? 'Show less' : 'Show full homepage';
+      if (!open) section.scrollIntoView({ block: 'start' });
+    });
+  });
+</script>
+
+</body>
+</html>
