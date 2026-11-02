@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Jubilant Bright Designs</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,500&family=Poppins:wght@400;500;600&display=swap">
+<style>
+  /* Layout: sticky design tabs, then one long preview image per design with a phone/computer switch. */
+  :root {
+    --bg: #eef0f2;
+    --surface: #ffffff;
+    --ink: #16161a;
+    --muted: #5d5f66;
+    --line: #dfe1e5;
+    --gold: #9a7443;
+    --gold-soft: rgba(154, 116, 67, 0.12);
+    --frame: #111114;
+    --display: 'Playfair Display', Georgia, serif;
+    --body: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #111215; --surface: #1a1b20; --ink: #eeeef1; --muted: #a3a5ad;
+      --line: #2b2d33; --gold: #d2ad70; --gold-soft: rgba(210, 173, 112, 0.14); --frame: #000000;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #111215; --surface: #1a1b20; --ink: #eeeef1; --muted: #a3a5ad;
+    --line: #2b2d33; --gold: #d2ad70; --gold-soft: rgba(210, 173, 112, 0.14); --frame: #000000;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+  .page { max-width: 1120px; margin: 0 auto; padding-block: 28px 70px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+  header.intro { display: flex; flex-direction: column; gap: 12px; padding-block: 12px 22px; max-width: 640px; }
+  .logo { height: 40px; width: auto; align-self: flex-start; filter: brightness(0); }
+  :root[data-theme="dark"] .logo { filter: none; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .logo { filter: none; } }
+  h1 { font-family: var(--display); font-weight: 600; font-size: clamp(30px, 7vw, 46px); line-height: 1.1; margin: 0; text-wrap: balance; }
+  h1 em { color: var(--gold); font-weight: 500; }
+
+  .bar {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 11;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px;
+    padding: 10px 0; margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .tabs { display: flex; gap: 8px; min-width: 0; max-width: 100%; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    flex: 0 0 auto; display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 14px; border-radius: 12px; background: var(--surface);
+    border: 1px solid var(--line); color: var(--ink); cursor: pointer;
+    font: 500 13.5px/1.2 var(--body); white-space: nowrap;
+  }
+  .tab b { font-family: var(--display); color: var(--gold); font-size: 16px; font-weight: 600; }
+  .tab[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .tab[aria-selected="true"] b { color: var(--gold); }
+  .newtag { align-self: center; font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; background: var(--gold-soft); color: var(--gold); border: 1px solid var(--gold); }
+  .tab .new { font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; font-weight: 600; padding: 2px 7px; border-radius: 99px; background: var(--gold-soft); color: var(--gold); border: 1px solid var(--gold); }
+
+  .views { display: inline-flex; padding: 4px; gap: 4px; margin-bottom: 16px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); }
+  .views button { font: 500 13.5px/1 var(--body); padding: 9px 14px; border-radius: 10px; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
+  .views button[aria-pressed="true"] { background: var(--gold-soft); color: var(--ink); box-shadow: inset 0 0 0 1px var(--gold); }
+  .tab:focus-visible, .views button:focus-visible, .more button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  .option { padding-block: 26px 10px; scroll-margin-top: 72px; }
+  .opt-title { margin-bottom: 18px; display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .letter { font-family: var(--display); font-style: italic; font-weight: 500; font-size: 52px; line-height: 1; color: var(--gold); }
+  h2 { font-family: var(--display); font-weight: 600; font-size: clamp(26px, 5.5vw, 34px); line-height: 1.15; margin: 0; }
+
+  .preview { position: relative; overflow: hidden; max-height: 820px; border-radius: 18px; }
+  .preview.open { max-height: none; }
+  .preview::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 170px; pointer-events: none; background: linear-gradient(180deg, transparent, var(--bg)); }
+  .preview.open::after { display: none; }
+  .shot-phone { display: block; width: 100%; max-width: 390px; height: auto; margin: 0 auto; border-radius: 26px; border: 8px solid var(--frame); }
+  .shot-desktop { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); }
+  body[data-view="mobile"] .shot-desktop { display: none; }
+  body[data-view="desktop"] .shot-phone { display: none; }
+  .more { display: flex; justify-content: center; margin: 14px 0 24px; }
+  .more button { font: 600 14px/1 var(--body); padding: 13px 22px; border-radius: 12px; border: 1px solid var(--gold); background: var(--gold-soft); color: var(--ink); cursor: pointer; }
+
+  @media (max-width: 560px) {
+    .tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; }
+    .tab { flex-direction: column; gap: 2px; padding: 8px 6px; font-size: 12px; white-space: normal; text-align: center; }
+    .tab .new { display: none; }
+  }
+  .live { display: flex; justify-content: center; margin: 0 0 10px; font-size: 14px; }
+  .live a { color: var(--gold); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
+  .live a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header class="intro">
+    <img class="logo" src="img/logo-white.png" alt="Jubilant Events &amp; Productions" width="123" height="40">
+    <h1>Three bright <em>designs</em></h1>
+  </header>
+
+  <div class="bar">
+    <div class="tabs" role="tablist" aria-label="Design options">
+      <button class="tab" role="tab" id="tab-bright-studio" data-slug="bright-studio" aria-controls="opt-bright-studio" aria-selected="true"><b>C</b>Bright Studio</button>
+      <button class="tab" role="tab" id="tab-sunrise-bento" data-slug="sunrise-bento" aria-controls="opt-sunrise-bento" aria-selected="false"><b>I</b>Sunrise Bento <span class="new">New</span></button>
+      <button class="tab" role="tab" id="tab-citrus-pop" data-slug="citrus-pop" aria-controls="opt-citrus-pop" aria-selected="false"><b>J</b>Citrus Pop <span class="new">New</span></button>
+    </div>
+  </div>
+
+  <section class="option" id="opt-bright-studio" role="tabpanel" aria-labelledby="tab-bright-studio">
+    <div class="opt-title"><span class="letter">C</span><h2>Bright Studio</h2></div>
+        <div class="views" role="group" aria-label="Preview size">
+      <button type="button" data-view="mobile" aria-pressed="true">Phone</button>
+      <button type="button" data-view="desktop" aria-pressed="false">Computer</button>
+    </div>
+    <div class="preview"><img class="shot-phone" src="img/c-mobile.jpg" alt="Bright Studio on a phone" loading="lazy"><img class="shot-desktop" src="img/c-desktop.jpg" alt="Bright Studio on a computer" loading="lazy"></div>
+    <div class="more"><button type="button">Show full homepage</button></div>
+  </section>
+
+  <section class="option" id="opt-sunrise-bento" role="tabpanel" aria-labelledby="tab-sunrise-bento" hidden>
+    <div class="opt-title"><span class="letter">I</span><h2>Sunrise Bento</h2><span class="newtag">New</span></div>
+        <div class="views" role="group" aria-label="Preview size">
+      <button type="button" data-view="mobile" aria-pressed="true">Phone</button>
+      <button type="button" data-view="desktop" aria-pressed="false">Computer</button>
+    </div>
+    <div class="preview"><img class="shot-phone" src="img/i-mobile.jpg" alt="Sunrise Bento on a phone" loading="lazy"><img class="shot-desktop" src="img/i-desktop.jpg" alt="Sunrise Bento on a computer" loading="lazy"></div>
+    <div class="more"><button type="button">Show full homepage</button></div>
+    <p class="live"><a href="sunrise-bento/">Open the live page</a></p>
+  </section>
+
+  <section class="option" id="opt-citrus-pop" role="tabpanel" aria-labelledby="tab-citrus-pop" hidden>
+    <div class="opt-title"><span class="letter">J</span><h2>Citrus Pop</h2><span class="newtag">New</span></div>
+        <div class="views" role="group" aria-label="Preview size">
+      <button type="button" data-view="mobile" aria-pressed="true">Phone</button>
+      <button type="button" data-view="desktop" aria-pressed="false">Computer</button>
+    </div>
+    <div class="preview"><img class="shot-phone" src="img/j-mobile.jpg" alt="Citrus Pop on a phone" loading="lazy"><img class="shot-desktop" src="img/j-desktop.jpg" alt="Citrus Pop on a computer" loading="lazy"></div>
+    <div class="more"><button type="button">Show full homepage</button></div>
+    <p class="live"><a href="citrus-pop/">Open the live page</a></p>
+  </section>
+</div>
+
+<script>
+  (function () {
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+    var sections = Array.prototype.slice.call(document.querySelectorAll('.option'));
+    var viewButtons = Array.prototype.slice.call(document.querySelectorAll('.views button'));
+
+    function show(slug, updateHash) {
+      var found = tabs.some(function (t) { return t.dataset.slug === slug; });
+      if (!found) slug = tabs[0].dataset.slug;
+      tabs.forEach(function (t) { t.setAttribute('aria-selected', String(t.dataset.slug === slug)); });
+      sections.forEach(function (s) { s.hidden = s.id !== 'opt-' + slug; });
+      if (updateHash && location.hash !== '#' + slug) location.hash = slug;
+      var current = document.getElementById('opt-' + slug);
+      if (updateHash && current.getBoundingClientRect().top < 0) current.scrollIntoView({ block: 'start' });
+    }
+
+    function setView(view) {
+      document.body.dataset.view = view;
+      viewButtons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.view === view)); });
+    }
+
+    tabs.forEach(function (t) { t.addEventListener('click', function () { show(t.dataset.slug, true); }); });
+    viewButtons.forEach(function (b) { b.addEventListener('click', function () { setView(b.dataset.view); }); });
+
+    sections.forEach(function (section) {
+      var preview = section.querySelector('.preview');
+      var more = section.querySelector('.more button');
+      more.addEventListener('click', function () {
+        var open = preview.classList.toggle('open');
+        more.textContent = open ? 'Show less' : 'Show full homepage';
+        if (!open) section.scrollIntoView({ block: 'start' });
+      });
+    });
+
+    window.addEventListener('hashchange', function () { show(location.hash.replace('#', ''), false); });
+    setView('mobile');
+    show(location.hash.replace('#', ''), false);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Jubilant Events — Option J, Citrus Pop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+  :root {
+    --sun: #ffd43b; --sun-pale: #fff4bd; --ink: #0e0e10; --ink2: #45454b; --mute: #7a7a82;
+    --coral: #ff5a36; --line: #e9e7df; --paper: #fffdf6;
+    --disp: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+    --serif: 'Instrument Serif', Georgia, serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font: 400 16px/1.6 var(--disp); color: var(--ink); background: #fff; padding: 0 14px 14px; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+  .wrap { max-width: 1260px; margin: 0 auto; padding: 0 44px; }
+  em { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; }
+  h1, h2, h3 { font-weight: 800; letter-spacing: -.04em; line-height: 1; }
+  h2 { font-size: clamp(38px, 5vw, 70px); }
+  h2 em { font-size: 1.14em; }
+
+  .btn { display: inline-flex; align-items: center; gap: 12px; padding: 16px 28px; border-radius: 999px; font: 700 15px/1 var(--disp); border: 2px solid var(--ink); white-space: nowrap; cursor: pointer; }
+  .btn svg { width: 17px; height: 17px; }
+  .btn.ink { background: var(--ink); color: #fff; }
+  .btn.white { background: #fff; color: var(--ink); }
+  .btn.sun { background: var(--sun); border-color: var(--sun); color: var(--ink); }
+  .kicker { display: inline-flex; align-items: center; gap: 10px; font: 700 12.5px/1 var(--disp); letter-spacing: .14em; text-transform: uppercase; }
+  .kicker svg { width: 14px; height: 14px; color: var(--coral); }
+
+  /* hero */
+  .hero-box { position: relative; background: var(--sun); border-radius: 46px; overflow: hidden; }
+  .rings { position: absolute; right: -240px; top: -200px; width: 980px; height: 980px; pointer-events: none; }
+  .rings i { position: absolute; border-radius: 50%; border: 1.6px solid rgba(14, 14, 16, .13); inset: 0; }
+  .rings i:nth-child(2) { inset: 110px; }
+  .rings i:nth-child(3) { inset: 220px; }
+  .rings i:nth-child(4) { inset: 330px; background: rgba(255, 255, 255, .22); border: 0; }
+  .topbar { position: sticky; top: 0; z-index: 20; margin: 0 -14px; padding: 0 14px; background: #fff; border-bottom: 2px solid var(--ink); }
+  .hero-shell { padding-top: 14px; }
+  .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 14px 0; }
+  .nav .logo { height: 44px; width: auto; filter: brightness(0); }
+  .nav ul { display: flex; gap: 4px; padding: 5px; border-radius: 999px; border: 1.5px solid var(--ink); background: #fff; }
+  .nav li a { display: block; padding: 10px 18px; border-radius: 999px; font-weight: 600; font-size: 14.5px; }
+  .nav li a.on { background: var(--ink); color: #fff; }
+  .nav .right { display: flex; align-items: center; gap: 18px; }
+  .nav .tel { font-weight: 700; font-size: 14.5px; }
+  .menu { display: none; width: 48px; height: 48px; border-radius: 50%; background: var(--ink); place-items: center; }
+  .menu i { width: 18px; height: 2px; background: #fff; box-shadow: 0 6px 0 #fff, 0 -6px 0 #fff; }
+  .hero { position: relative; z-index: 2; display: grid; grid-template-columns: 1.02fr 1fr; gap: 40px; align-items: center; padding: 50px 0 80px; }
+  .hero .kicker { padding: 9px 16px; border: 1.5px solid var(--ink); border-radius: 999px; background: rgba(255, 255, 255, .55); }
+  .hero h1 { font-size: clamp(50px, 6.8vw, 104px); margin: 26px 0 26px; line-height: .96; }
+  .hero h1 em { font-size: 1.16em; line-height: .8; display: inline-block; position: relative; }
+  .hero h1 em::after { content: ''; position: absolute; left: 2%; right: 2%; bottom: -4px; height: 12px; background: #fff; border-radius: 99px; z-index: -1; opacity: .85; }
+  .hero .lead { max-width: 480px; font-size: 18px; color: #2d2a1c; }
+  .hero .cta { display: flex; gap: 12px; flex-wrap: wrap; margin: 32px 0 36px; }
+  .pills { display: flex; gap: 10px; flex-wrap: wrap; }
+  .pill { display: flex; align-items: baseline; gap: 8px; background: #fff; border-radius: 999px; padding: 11px 20px; border: 1.5px solid var(--ink); }
+  .pill b { font-size: 22px; letter-spacing: -.03em; }
+  .pill span { font-size: 13px; color: var(--ink2); font-weight: 500; }
+
+  .arches { position: relative; display: grid; grid-template-columns: 1fr 1.14fr 1fr; gap: 14px; align-items: end; height: 580px; }
+  .arch { position: relative; overflow: hidden; border-radius: 999px 999px 26px 26px; background: #fff3b0; border: 3px solid var(--ink); }
+  .arch img { width: 100%; height: 100%; object-fit: cover; }
+  .arch:nth-of-type(1) { height: 400px; }
+  .arch:nth-of-type(2) { height: 540px; }
+  .arch:nth-of-type(3) { height: 450px; }
+  .spin { position: absolute; z-index: 4; left: 50%; bottom: -26px; transform: translateX(-50%); width: 132px; height: 132px; border-radius: 50%; background: #fff; border: 2px solid var(--ink); display: grid; place-items: center; }
+  .spin svg.t { position: absolute; inset: 0; width: 100%; height: 100%; animation: spin 16s linear infinite; }
+  .spin text { font: 700 11px var(--disp); letter-spacing: 2.5px; text-transform: uppercase; fill: var(--ink); }
+  .spin .dot { width: 50px; height: 50px; border-radius: 50%; background: var(--ink); color: #fff; display: grid; place-items: center; }
+  .spin .dot svg { width: 22px; height: 22px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .sp { position: absolute; z-index: 4; color: var(--ink); }
+  .sp.s1 { width: 44px; left: -6px; top: 36px; }
+  .sp.s2 { width: 28px; right: 6px; top: 6px; color: var(--coral); }
+  .sp.s3 { width: 22px; left: 22%; bottom: 40px; color: #fff; }
+
+  /* clients */
+  .clients { padding: 54px 0 20px; }
+  .clients .wrap { display: flex; align-items: center; gap: 46px; }
+  .clients p { flex: none; font: 700 12.5px/1 var(--disp); letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
+  .clients .logos { flex: 1; display: flex; justify-content: space-between; align-items: center; gap: 26px; flex-wrap: wrap; }
+  .clients img { height: 50px; width: auto; max-width: 150px; object-fit: contain; }
+
+  /* services list */
+  section.block { padding: 96px 0; }
+  .services .wrap { display: grid; grid-template-columns: .8fr 1.5fr; gap: 70px; align-items: start; }
+  .services .side { position: sticky; top: 30px; }
+  .services .side h2 { margin: 22px 0 22px; }
+  .services .side p { color: var(--ink2); max-width: 340px; margin-bottom: 28px; }
+  .list { border-bottom: 2px solid var(--ink); }
+  .item { display: grid; grid-template-columns: 1fr auto 52px; align-items: center; gap: 26px; padding: 26px 4px; border-top: 2px solid var(--ink); }
+  .item h3 { font-size: clamp(24px, 2.5vw, 34px); letter-spacing: -.035em; }
+  .item p { margin-top: 6px; font-size: 14.5px; color: var(--ink2); max-width: 430px; }
+  .item .thumb { width: 164px; height: 78px; border-radius: 999px; overflow: hidden; border: 2px solid var(--ink); }
+  .item .thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .item .go { width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--ink); display: grid; place-items: center; }
+  .item .go svg { width: 20px; height: 20px; }
+  .item.hot { background: var(--sun); border-radius: 30px; border: 2px solid var(--ink); padding: 28px; margin: 0 -4px 4px; box-shadow: 8px 8px 0 var(--ink); }
+  .item.hot + .item { border-top-color: transparent; }
+  .item.hot .go { background: var(--ink); color: #fff; }
+
+  /* work */
+  .work-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 50px; }
+  .work-head h2 { margin-top: 20px; }
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; }
+  .filters span { padding: 11px 20px; border-radius: 999px; border: 2px solid var(--ink); font-weight: 700; font-size: 14px; }
+  .filters span.on { background: var(--ink); color: #fff; }
+  .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 46px 24px; }
+  .card { position: relative; }
+  .card .im { position: relative; border-radius: 34px; overflow: hidden; border: 2px solid var(--ink); background: var(--sun-pale); }
+  .card .im img { width: 100%; height: 100%; object-fit: cover; }
+  .card .cap { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 6px 0; }
+  .card h3 { font-size: 22px; letter-spacing: -.03em; }
+  .card .tag { display: inline-block; margin-bottom: 7px; font: 700 11px/1 var(--disp); letter-spacing: .12em; text-transform: uppercase; background: var(--sun); padding: 6px 10px; border-radius: 99px; }
+  .card .arr { flex: none; width: 46px; height: 46px; border-radius: 50%; background: var(--ink); color: #fff; display: grid; place-items: center; }
+  .card .arr svg { width: 18px; height: 18px; }
+  .w1 { grid-column: span 7; } .w1 .im { height: 440px; }
+  .w2 { grid-column: span 5; } .w2 .im { height: 440px; }
+  .w3, .w4, .w5 { grid-column: span 4; } .w3 .im, .w4 .im, .w5 .im { height: 320px; }
+  .w1::before { content: ''; position: absolute; left: -14px; top: 14px; width: 100%; height: 440px; background: var(--sun); border-radius: 34px; transform: rotate(-1.6deg); z-index: -1; }
+  .work { position: relative; z-index: 0; }
+
+  /* featured */
+  .feat { background: var(--coral); color: #fff; border-radius: 46px; padding: 66px 60px; display: grid; grid-template-columns: .95fr 1.2fr; gap: 50px; align-items: center; position: relative; overflow: hidden; }
+  .feat::after { content: ''; position: absolute; width: 520px; height: 520px; border-radius: 50%; border: 1.6px solid rgba(255, 255, 255, .35); left: -200px; bottom: -280px; box-shadow: 0 0 0 70px rgba(255, 255, 255, .05); }
+  .feat .kicker svg { color: var(--sun); }
+  .feat h2 { font-size: clamp(54px, 7.4vw, 112px); margin: 22px 0 20px; line-height: .86; }
+  .feat h2 em { font-size: 1.08em; display: block; color: var(--sun); }
+  .feat p { max-width: 420px; color: #fff; opacity: .95; margin-bottom: 30px; }
+  .feat .stage { position: relative; height: 430px; }
+  .feat .still { position: absolute; right: 0; top: 0; width: 82%; aspect-ratio: 16 / 10; border-radius: 30px; overflow: hidden; border: 3px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); }
+  .feat .still img { width: 100%; height: 100%; object-fit: cover; }
+  .play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 84px; height: 84px; border-radius: 50%; background: var(--sun); border: 2px solid var(--ink); display: grid; place-items: center; }
+  .play svg { width: 28px; height: 28px; margin-left: 4px; }
+  .feat .poster { position: absolute; left: 2%; bottom: -20px; width: 30%; aspect-ratio: 2 / 3; border-radius: 22px; overflow: hidden; border: 3px solid var(--ink); transform: rotate(-5deg); box-shadow: 8px 8px 0 var(--ink); }
+  .feat .poster img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* numbers */
+  .numbers { background: var(--sun-pale); border-radius: 46px; padding: 66px 56px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; position: relative; overflow: hidden; }
+  .numbers .n { padding-left: 24px; border-left: 2px solid var(--ink); }
+  .numbers b { display: block; font-size: clamp(54px, 6.6vw, 98px); font-weight: 800; letter-spacing: -.05em; line-height: .95; }
+  .numbers span { display: block; margin-top: 10px; font: italic 400 24px/1.1 var(--serif); max-width: 200px; }
+
+  /* themes */
+  .themes .head { text-align: center; margin-bottom: 60px; }
+  .themes .head h2 { margin: 22px auto 0; max-width: 780px; }
+  .arch-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; align-items: start; }
+  .arch-row figure:nth-child(even) { margin-top: 56px; }
+  .arch-row .a { height: 430px; border-radius: 999px 999px 30px 30px; overflow: hidden; border: 3px solid var(--ink); position: relative; }
+  .arch-row .a img { width: 100%; height: 100%; object-fit: cover; }
+  .arch-row .a em { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); background: #fff; border: 2px solid var(--ink); padding: 6px 16px 4px; border-radius: 99px; font-size: 20px; white-space: nowrap; }
+  .arch-row h3 { font-size: 24px; margin: 22px 0 6px; text-align: center; letter-spacing: -.03em; }
+  .arch-row p { text-align: center; font-size: 14.5px; color: var(--ink2); }
+
+  /* contact */
+  .contact { background: var(--ink); color: #fff; border-radius: 46px; padding: 70px 60px; display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; position: relative; overflow: hidden; }
+  .contact::before { content: ''; position: absolute; width: 520px; height: 520px; right: -200px; top: -240px; border-radius: 50%; background: var(--sun); opacity: .16; }
+  .contact h2 { font-size: clamp(42px, 5vw, 72px); margin: 22px 0 18px; }
+  .contact h2 em { color: var(--sun); }
+  .contact .kicker svg { color: var(--sun); }
+  .contact .l > p { color: #cfcfd3; max-width: 380px; }
+  .clist { margin-top: 34px; display: grid; gap: 14px; }
+  .cl { display: flex; align-items: center; gap: 16px; }
+  .cl i { width: 48px; height: 48px; border-radius: 50%; background: var(--sun); color: var(--ink); display: grid; place-items: center; flex: none; }
+  .cl i svg { width: 21px; height: 21px; }
+  .cl small { display: block; color: #a4a4ab; font-size: 12.5px; line-height: 1.2; }
+  .cl b { font-weight: 600; font-size: 17px; word-break: break-word; }
+  .contact .form { position: relative; z-index: 1; background: #17171a; border: 1px solid #2c2c31; border-radius: 34px; padding: 40px; }
+  .contact .form h3 { font-size: 28px; margin-bottom: 22px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .f { margin-bottom: 14px; }
+  .f label { display: block; font-size: 13px; font-weight: 600; color: #cfcfd3; margin-bottom: 7px; }
+  .f div { background: #0e0e10; border: 1.5px solid #34343a; border-radius: 16px; padding: 15px 17px; font-size: 14.5px; color: #7d7d85; }
+  .f div.ta { min-height: 108px; }
+  .form .btn { width: 100%; justify-content: center; padding: 19px; font-size: 16px; }
+
+  footer { padding: 54px 0 20px; }
+  footer .top { display: flex; justify-content: space-between; align-items: center; gap: 30px; padding-bottom: 32px; border-bottom: 2px solid var(--ink); }
+  footer .logo { height: 46px; width: auto; filter: brightness(0); }
+  footer nav { display: flex; gap: 28px; flex-wrap: wrap; font-weight: 600; font-size: 15px; }
+  footer .bottom { display: flex; justify-content: space-between; gap: 16px; padding-top: 20px; font-size: 13px; color: var(--mute); }
+
+  @media (max-width: 1080px) {
+    .wrap { padding: 0 30px; }
+    .nav ul, .nav .tel { display: none; }
+    .menu { display: grid; }
+    .hero { grid-template-columns: 1fr; padding-bottom: 70px; }
+    .arches { max-width: 640px; margin: 0 auto; width: 100%; }
+    .services .wrap { grid-template-columns: 1fr; gap: 40px; }
+    .services .side { position: static; }
+    .work-head { flex-direction: column; align-items: flex-start; gap: 22px; }
+    .w1, .w2 { grid-column: span 12; }
+    .w3, .w4, .w5 { grid-column: span 6; }
+    .w5 { grid-column: span 12; }
+    .w1::before { height: 440px; }
+    .feat { grid-template-columns: 1fr; padding: 44px 34px; }
+    .numbers { grid-template-columns: repeat(2, 1fr); gap: 40px 20px; }
+    .arch-row { grid-template-columns: repeat(2, 1fr); }
+    .contact { grid-template-columns: 1fr; padding: 48px 34px; gap: 44px; }
+  }
+  @media (max-width: 640px) {
+    body { padding: 0 8px 8px; }
+    .topbar { margin: 0 -8px; padding: 0 8px; }
+    .wrap { padding: 0 18px; }
+    .hero-box, .feat, .numbers, .contact { border-radius: 30px; }
+    .nav { padding: 10px 0; }
+    .nav .logo { height: 36px; }
+    .nav .right .btn { display: none; }
+    .hero { padding: 30px 0 56px; gap: 30px; }
+    .hero .kicker { font-size: 10.5px; }
+    .hero .cta .btn { flex: 1 1 100%; justify-content: center; }
+    .pill { padding: 9px 15px; }
+    .arches { height: 380px; gap: 8px; }
+    .arch { border-width: 2px; }
+    .arch:nth-of-type(1) { height: 250px; }
+    .arch:nth-of-type(2) { height: 350px; }
+    .arch:nth-of-type(3) { height: 290px; }
+    .spin { width: 104px; height: 104px; bottom: -34px; }
+    .spin text { font-size: 9.6px; }
+    .spin .dot { width: 40px; height: 40px; }
+    .clients .wrap { flex-direction: column; align-items: flex-start; gap: 18px; }
+    .clients .logos { justify-content: flex-start; gap: 22px 28px; }
+    .clients img { height: 40px; }
+    section.block { padding: 64px 0; }
+    .item { grid-template-columns: 1fr 46px; gap: 14px; padding: 22px 2px; }
+    .item .thumb { display: none; }
+    .item .go { width: 46px; height: 46px; }
+    .item.hot { padding: 22px 18px; box-shadow: 6px 6px 0 var(--ink); }
+    .w3, .w4, .w5 { grid-column: span 12; }
+    .w1 .im, .w2 .im { height: 300px; }
+    .w1::before { height: 300px; left: -6px; }
+    .grid { gap: 38px 0; }
+    .feat { padding: 38px 22px 52px; }
+    .feat .stage { height: 290px; }
+    .feat .still { box-shadow: 6px 6px 0 var(--ink); border-radius: 22px; }
+    .feat .poster { box-shadow: 5px 5px 0 var(--ink); }
+    .play { width: 62px; height: 62px; }
+    .numbers { padding: 40px 22px; }
+    .numbers span { font-size: 20px; }
+    .numbers b { font-size: 46px; }
+    .numbers .n { padding-left: 16px; }
+    .arch-row { grid-template-columns: 1fr; }
+    .arch-row figure:nth-child(even) { margin-top: 0; }
+    .arch-row .a { height: 400px; }
+    .contact { padding: 40px 22px; }
+    .contact .form { padding: 26px 20px; }
+    .row { grid-template-columns: 1fr; gap: 0; }
+    footer .top, footer .bottom { flex-direction: column; align-items: flex-start; }
+  }
+  @media (prefers-reduced-motion: reduce) { .spin svg.t { animation: none; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15a1 1 0 0 0 1.5.9l12-7.5a1 1 0 0 0 0-1.8l-12-7.5A1 1 0 0 0 7 4.5z"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1c.9 6.2 3.8 9.1 11 11-7.2 1.9-10.1 4.8-11 11-.9-6.2-3.8-9.1-11-11 7.2-1.9 10.1-4.8 11-11z"/></symbol>
+  </defs>
+</svg>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="nav">
+      <img class="logo" src="../images/logo-white.png" alt="Jubilant Events &amp; Productions">
+      <ul>
+        <li><a class="on" href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Work</a></li>
+        <li><a href="#">Production</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <div class="right">
+        <span class="tel">+91 95455 99027</span>
+        <a class="btn ink" href="#">Plan your event <svg><use href="#i-arrow"/></svg></a>
+        <span class="menu"><i></i></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="hero-shell">
+<div class="hero-box">
+  <div class="rings"><i></i><i></i><i></i><i></i></div>
+  <div class="wrap">
+
+    <div class="hero">
+      <div>
+        <span class="kicker">Event management &amp; production · Pune</span>
+        <h1>We create experiences people <em>remember.</em></h1>
+        <p class="lead">From concept to completion, one in-house team plans, builds and runs your event: stage, artists, décor and show day.</p>
+        <div class="cta">
+          <a class="btn ink" href="#">Plan your event <svg><use href="#i-arrow"/></svg></a>
+          <a class="btn white" href="#"><svg><use href="#i-play"/></svg> Watch our reel</a>
+        </div>
+        <div class="pills">
+          <div class="pill"><b>100+</b><span>events delivered</span></div>
+          <div class="pill"><b>13</b><span>services</span></div>
+          <div class="pill"><b>2017</b><span>since</span></div>
+        </div>
+      </div>
+
+      <div class="arches">
+        <svg class="sp s1"><use href="#i-spark"/></svg>
+        <svg class="sp s2"><use href="#i-spark"/></svg>
+        <svg class="sp s3"><use href="#i-spark"/></svg>
+        <div class="arch"><img src="../images/events/decor-floral-mandap.jpg" alt="Floral mandap" style="object-position:50% 30%"></div>
+        <div class="arch"><img src="../images/events/udta-teer/udta-teer-12.jpg" alt="Udta Teer promotion"></div>
+        <div class="arch"><img src="../images/events/theme-haldi.jpg" alt="Haldi stage"></div>
+        <a class="spin" href="#">
+          <svg class="t" viewBox="0 0 132 132"><defs><path id="circ" d="M66 66m-50 0a50 50 0 1 1 100 0a50 50 0 1 1-100 0"/></defs><text><textPath href="#circ">Plan your event · Plan your event ·</textPath></text></svg>
+          <span class="dot"><svg><use href="#i-up"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<section class="clients">
+  <div class="wrap">
+    <p>Trusted by</p>
+    <div class="logos">
+      <img src="../images/clients/seasons.png" alt="Seasons Mall">
+      <img src="../images/clients/hdfc-bank.png" alt="HDFC Bank">
+      <img src="../images/clients/intrepid-control-systems.png" alt="Intrepid Control Systems">
+      <img src="../images/clients/dilip-oaks-academy.png" alt="Dilip Oak's Academy">
+      <img src="../images/clients/sgs-mall.png" alt="SGS Mall">
+      <img src="../images/clients/nuhii.png" alt="NUHII">
+    </div>
+  </div>
+</section>
+
+<section class="block services">
+  <div class="wrap">
+    <div class="side">
+      <span class="kicker"><svg><use href="#i-spark"/></svg>What we do</span>
+      <h2>One team, <em>every</em> kind of event.</h2>
+      <p>Pick what you are planning and we take it from the first idea to the last guest leaving.</p>
+      <a class="btn ink" href="#">All 13 services <svg><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="list">
+      <a class="item hot" href="#"><div><h3>Celebrity &amp; Artist Management</h3><p>Securing and coordinating celebrity appearances that elevate your event's profile.</p></div><span class="thumb"><img src="../images/events/svc-celebrity-management.jpg" alt=""></span><span class="go"><svg><use href="#i-up"/></svg></span></a>
+      <a class="item" href="#"><div><h3>Brand Promotions &amp; Launches</h3><p>On-ground activations and reveals that build lasting brand equity.</p></div><span class="thumb"><img src="../images/events/svc-brand-promotions.jpg" alt=""></span><span class="go"><svg><use href="#i-up"/></svg></span></a>
+      <a class="item" href="#"><div><h3>MICE &amp; Conferences</h3><p>Meetings, incentives, conferences and exhibitions, delivered at scale.</p></div><span class="thumb"><img src="../images/events/svc-mice.jpg" alt=""></span><span class="go"><svg><use href="#i-up"/></svg></span></a>
+      <a class="item" href="#"><div><h3>Opening &amp; Inauguration Events</h3><p>Grand openings executed with precision, spectacle and style.</p></div><span class="thumb"><img src="../images/events/svc-opening-events.jpg" alt=""></span><span class="go"><svg><use href="#i-up"/></svg></span></a>
+      <a class="item" href="#"><div><h3>Event Production</h3><p>Full-scale technical production, from concept through to show day.</p></div><span class="thumb"><img src="../images/events/svc-event-production.jpg" alt=""></span><span class="go"><svg><use href="#i-up"/></svg></span></a>
+      <a class="item" href="#"><div><h3>Custom Fabrication</h3><p>Bespoke structures and builds, engineered and fabricated in-house.</p></div><span class="thumb"><img src="../images/events/svc-custom-fabrication.jpg" alt=""></span><span class="go"><svg><use href="#i-up"/></svg></span></a>
+      <a class="item" href="#"><div><h3>Live Events &amp; Entertainment</h3><p>Full-scale production for concerts, festivals and live shows.</p></div><span class="thumb"><img src="../images/events/svc-live-events.jpg" alt=""></span><span class="go"><svg><use href="#i-up"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<section class="block work" style="padding-top:20px">
+  <div class="wrap">
+    <div class="work-head">
+      <div><span class="kicker"><svg><use href="#i-spark"/></svg>Recent work</span><h2>Moments we <em>built</em> for the crowd.</h2></div>
+      <div class="filters"><span class="on">All</span><span>Celebrity</span><span>Corporate</span><span>Weddings</span></div>
+    </div>
+    <div class="grid">
+      <article class="card w1"><div class="im"><img src="../images/events/project-awarapan-2.jpg" alt="Awarapan 2 cast meet and greet" style="object-position:50% 30%"></div><div class="cap"><div><span class="tag">Celebrity</span><h3>Awarapan 2 Star Cast Meet &amp; Greet</h3></div><span class="arr"><svg><use href="#i-up"/></svg></span></div></article>
+      <article class="card w2"><div class="im"><img src="../images/events/project-anniversary-felicitation.jpg" alt="Seasons Mall 13th anniversary felicitation" style="object-position:35% 50%"></div><div class="cap"><div><span class="tag">Corporate</span><h3>Seasons Mall 13th Anniversary</h3></div><span class="arr"><svg><use href="#i-up"/></svg></span></div></article>
+      <article class="card w3"><div class="im"><img src="../images/events/teaser-live-events.jpg" alt="Concert activation in a mall"></div><div class="cap"><div><span class="tag">Live</span><h3>Mall Concert Activation</h3></div><span class="arr"><svg><use href="#i-up"/></svg></span></div></article>
+      <article class="card w4"><div class="im"><img src="../images/events/theme-sangeet.jpg" alt="Illuminated wedding entrance" style="object-position:50% 55%"></div><div class="cap"><div><span class="tag">Wedding</span><h3>Illuminated Entrance</h3></div><span class="arr"><svg><use href="#i-up"/></svg></span></div></article>
+      <article class="card w5"><div class="im"><img src="../images/events/gallery-floral-entrance.jpg" alt="Floral entrance"></div><div class="cap"><div><span class="tag">Décor</span><h3>Floral Entrance</h3></div><span class="arr"><svg><use href="#i-up"/></svg></span></div></article>
+    </div>
+  </div>
+</section>
+
+<section style="padding: 10px 0 96px">
+  <div class="wrap" style="max-width:1340px">
+    <div class="feat">
+      <div style="position:relative;z-index:1">
+        <span class="kicker"><svg><use href="#i-spark"/></svg>Featured · Seasons Mall, Pune</span>
+        <h2>Udta <em>Teer</em></h2>
+        <p>A film promotion that filled every level of the Seasons Mall atrium, then moved into the cinema. Stage, artists and show-day production, by one team.</p>
+        <a class="btn white" href="#">See the full story <svg><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="stage">
+        <div class="still"><img src="../images/events/udta-teer-film-poster.jpg" alt="Udta Teer cast arriving"><span class="play"><svg><use href="#i-play"/></svg></span></div>
+        <div class="poster"><img src="../images/events/udta-teer/udta-teer-15.jpg" alt="Udta Teer poster"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-bottom: 96px">
+  <div class="wrap" style="max-width:1340px">
+    <div class="numbers">
+      <div class="n"><b>100+</b><span>Events delivered</span></div>
+      <div class="n"><b>13</b><span>Services under one roof</span></div>
+      <div class="n"><b>2017</b><span>Management company founded</span></div>
+      <div class="n"><b>2018</b><span>Own production house built</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="block themes" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker"><svg><use href="#i-spark"/></svg>Weddings &amp; celebrations</span>
+      <h2>Signature <em>wedding</em> themes</h2>
+    </div>
+    <div class="arch-row">
+      <figure><div class="a"><img src="../images/events/theme-haldi.jpg" alt=""><em>Haldi</em></div><h3>Tangerine Glow</h3><p>Marigold, citrus and a rangoli floor.</p></figure>
+      <figure><div class="a"><img src="../images/events/theme-sangeet.jpg" alt=""><em>Sangeet</em></div><h3>An Evening of Light</h3><p>Glowing entrances and a performance stage.</p></figure>
+      <figure><div class="a"><img src="../images/events/theme-phere.jpg" alt=""><em>Phere</em></div><h3>Framed in Florals</h3><p>A mandap in roses and crystal strands.</p></figure>
+      <figure><div class="a"><img src="../images/events/theme-afterparty.jpg" alt=""><em>After Party</em></div><h3>Neon Nights</h3><p>Light installations and a DJ console.</p></figure>
+    </div>
+  </div>
+</section>
+
+<section style="padding-bottom: 30px">
+  <div class="wrap" style="max-width:1340px">
+    <div class="contact">
+      <div class="l" style="position:relative;z-index:1">
+        <span class="kicker"><svg><use href="#i-spark"/></svg>Get in touch</span>
+        <h2>Tell us about <em>your event.</em></h2>
+        <p>Share a few details and our team will get back to you shortly.</p>
+        <div class="clist">
+          <div class="cl"><i><svg><use href="#i-phone"/></svg></i><div><small>Primary line</small><b>+91 95455 99027</b></div></div>
+          <div class="cl"><i><svg><use href="#i-phone"/></svg></i><div><small>Alternate line</small><b>+91 90285 12879</b></div></div>
+          <div class="cl"><i><svg><use href="#i-mail"/></svg></i><div><small>Email</small><b>jubilantgroupindia@gmail.com</b></div></div>
+          <div class="cl"><i><svg><use href="#i-pin"/></svg></i><div><small>Location</small><b>Pune, Maharashtra</b></div></div>
+        </div>
+      </div>
+      <div class="form">
+        <h3>Send an enquiry</h3>
+        <div class="row"><div class="f"><label>Full name</label><div>Your name</div></div><div class="f"><label>Phone</label><div>10-digit mobile number</div></div></div>
+        <div class="row"><div class="f"><label>Event type</label><div>Select event type</div></div><div class="f"><label>Event date</label><div>dd / mm / yyyy</div></div></div>
+        <div class="f"><label>Message</label><div class="ta">Tell us a little about your event</div></div>
+        <a class="btn sun" href="#">Send enquiry <svg><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <img class="logo" src="../images/logo-white.png" alt="Jubilant Events &amp; Productions">
+      <nav><a href="#">About</a><a href="#">Services</a><a href="#">Work</a><a href="#">Production</a><a href="#">Contact</a></nav>
+    </div>
+    <div class="bottom"><span>© 2026 Jubilant Events &amp; Productions</span><span>Powered by RaRi Softworks</span></div>
+  </div>
+</footer>
+</body>
+</html>
