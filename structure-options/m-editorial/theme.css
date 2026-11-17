@@ -1,0 +1,78 @@
+/* Option M - Editorial: warm cream, deep wine, brass; serif headlines, centred masthead nav */
+:root{
+  --disp:'Fraunces',Georgia,serif;--body:'Jost','Segoe UI',sans-serif;
+  --bg:#fbf6ee;--tint:#f2e8d8;--dark:#2b1418;--ink:#2b1418;--ink2:#5d4a47;--mute:#8d7a73;--line:#e3d4bd;--card:#fffdf8;
+  --on-dark:#f7ecdc;--on-dark2:#d3bfae;--line-d:rgba(247,236,220,.2);--card-d:rgba(247,236,220,.06);
+  --acc:#8c2438;--on-acc:#fff;--btn-bg:#8c2438;--btn-fg:#fff;
+  --r:4px;--rbtn:2px;--rpill:2px;--shadow:0 26px 50px -30px rgba(70,28,30,.5);--hw:500;--hls:-.02em;--stat-w:400;--bt-w:400;
+  --hero-shade:linear-gradient(180deg,rgba(43,20,24,.35) 0%,rgba(43,20,24,.5) 50%,rgba(30,12,16,.9) 100%);
+  --hero-pt:96px;--menu-bg:#fbf6ee;--foot-bg:#24100f;--foot-fg:#e6d6c4;--foot-h:#d7b370;
+}
+.s-d{--acc:#d7b370}
+body{letter-spacing:.005em}
+.topbar{background:#2b1418;color:#e6d6c4;text-align:center}
+.topbar .wrap{justify-content:center}
+.topbar .r{display:none}
+.topbar b{color:#d7b370;font-weight:500}
+.site-header{background:var(--bg);border-bottom:1px solid var(--line)}
+.nav{flex-direction:column;gap:0;padding-top:22px;padding-bottom:0}
+.nav .logo img{height:50px;filter:brightness(0) saturate(100%) invert(12%) sepia(40%) saturate(1900%) hue-rotate(320deg) brightness(.7)}
+.nav .links{margin:16px 0 0;width:100%;justify-content:center;gap:34px;border-top:1px solid var(--line);padding:6px 0}
+.nav .links a{padding:12px 4px;font:500 13.5px/1 var(--body);letter-spacing:.2em;text-transform:uppercase;border-radius:0;position:relative}
+.nav .links a.on{color:var(--acc)}
+.nav .links a.on::after{content:'';position:absolute;left:4px;right:4px;bottom:4px;height:1px;background:var(--acc)}
+.nav .links .btn{margin-left:14px;padding:12px 22px;border-radius:2px;color:#fff;letter-spacing:.14em}
+.nav .links .btn:hover{color:#fff}
+.hero{align-items:flex-end}
+.hero h1{font-weight:400;font-size:clamp(46px,7.6vw,112px);letter-spacing:-.035em;line-height:1}
+.hero h1 em,h2 em,.phero h1 em{font-style:italic;font-weight:400}
+.hero h1 em,.phero h1 em,.s-d h2 em{color:#e6c585}
+h2 em{color:var(--acc)}
+.hero .eyebrow,.phero .eyebrow{color:#e6c585}
+.hero p{font-weight:300;font-size:clamp(18px,1.6vw,22px)}
+.eyebrow{font-weight:500;letter-spacing:.24em;font-size:12px}
+.btn{letter-spacing:.12em;text-transform:uppercase;font-size:13px;font-weight:500;padding:17px 30px}
+.btn-p:hover{background:#6f1c2c}
+.btn-o{border-color:rgba(255,255,255,.7)}
+.head.c .eyebrow,.head .eyebrow{display:flex;align-items:center;gap:14px}
+.head.c .eyebrow{justify-content:center}
+.head .eyebrow::before,.head.c .eyebrow::after{content:'';height:1px;width:34px;background:currentColor;opacity:.55}
+.head.row .eyebrow::after,.head:not(.c) .eyebrow::after{content:none}
+.card{padding:10px;border-radius:4px}
+.card img{border-radius:2px}
+.card .body{padding:20px 14px 18px}
+.card .cat{color:var(--acc);letter-spacing:.2em;font-weight:500}
+.card h3{font-weight:500;font-size:23px}
+.tile{padding:0;border:8px solid #fffdf8;box-shadow:var(--shadow)}
+.s-d .tile{border-color:rgba(247,236,220,.9)}
+.photo,.band,.vid{border:8px solid #fffdf8;box-shadow:var(--shadow)}
+.pill{text-transform:uppercase;letter-spacing:.14em;font-size:12.5px;padding:12px 18px}
+.stats b{font-weight:400;color:var(--acc)}
+.s-d .stats b{color:#d7b370}
+.step{border-radius:2px}
+.step b{font-weight:400;font-style:italic;color:var(--acc)}
+.bigtext{font-weight:400}
+.bigtext span:nth-child(even){font-style:italic}
+.bigtext span:nth-child(odd){color:var(--acc)}
+.feat i{font-family:var(--disp);font-style:italic;font-size:18px}
+.cta{background:#5c1a2a;color:#f7ecdc;--ink:#f7ecdc}
+.cta::before{content:'';position:absolute;inset:18px;border:1px solid rgba(215,179,112,.45);pointer-events:none}
+.cta h2 em{color:#e6c585}
+.cta .btn-p{background:#d7b370;color:#2b1418}
+.cta .btn-o{border-color:rgba(247,236,220,.6)}
+.chip{border-radius:2px}
+.s-d .chip{box-shadow:inset 0 0 0 1px rgba(0,0,0,.05)}
+.marq h4{letter-spacing:.24em}
+details.faq summary{font-weight:500;font-size:21px}
+.ccard{border-radius:2px}
+.ccard svg{color:var(--acc)}
+form.enq{border-radius:2px}
+footer{border-top:6px double rgba(215,179,112,.55)}
+.social a{border-radius:2px}
+@media(max-width:980px){
+  .nav{flex-direction:row;padding-top:14px;padding-bottom:14px;gap:20px}
+  .nav .logo img{height:42px}
+  .nav .links{margin:0;border-top:0;padding:12px 24px 24px;width:auto;justify-content:flex-start;gap:0}
+  .nav .links a{border-bottom:1px solid var(--line)}
+  .nav .links a.on::after{display:none}
+}

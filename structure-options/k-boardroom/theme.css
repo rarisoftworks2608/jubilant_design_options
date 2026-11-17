@@ -1,0 +1,42 @@
+/* Option K - Boardroom: white + deep navy + teal, square-ish corporate look */
+:root{
+  --disp:'Plus Jakarta Sans','Segoe UI',sans-serif;--body:'Plus Jakarta Sans','Segoe UI',sans-serif;
+  --bg:#ffffff;--tint:#f1f5fa;--dark:#0b2545;--ink:#0b2545;--ink2:#46566d;--mute:#7a889c;--line:#dde5ef;--card:#ffffff;
+  --on-dark:#ffffff;--on-dark2:#b9c7da;--line-d:rgba(255,255,255,.16);--card-d:rgba(255,255,255,.06);
+  --acc:#008f87;--on-acc:#fff;--btn-bg:#00b3a6;--btn-fg:#04201e;
+  --r:10px;--rbtn:8px;--rpill:8px;--shadow:0 24px 50px -28px rgba(11,37,69,.45);--hw:800;--hls:-.03em;
+  --hero-shade:linear-gradient(180deg,rgba(11,37,69,.35) 0%,rgba(11,37,69,.55) 50%,rgba(6,20,40,.92) 100%);
+  --hero-pt:96px;--menu-bg:#fff;--foot-bg:#081a33;--foot-fg:#d5deeb;--foot-h:#35d4c7;
+}
+.s-d{--acc:#35d4c7}
+.topbar{background:#0b2545;color:#d5deeb}
+.topbar b{color:#35d4c7;font-weight:600}
+.site-header{background:#fff;border-bottom:1px solid var(--line);box-shadow:0 14px 30px -26px rgba(11,37,69,.6)}
+.nav{padding-block:14px}
+.nav .logo img{filter:brightness(0) saturate(100%) invert(10%) sepia(40%) saturate(2400%) hue-rotate(194deg) brightness(.8)}
+.nav .links a.on{color:var(--acc);background:#e6f6f5}
+.hero .eyebrow{color:#7ff3e8;font-weight:700;text-shadow:0 1px 14px rgba(0,0,0,.6)}
+.hero h1{font-weight:800}
+.hero h1 em,h2 em,.phero h1 em,.cta h2 em{font-style:normal;color:var(--acc)}
+.hero h1 em,.s-d h2 em,.phero h1 em,.cta h2 em{color:#35d4c7}
+.btn-p{box-shadow:0 12px 24px -14px rgba(0,179,166,.9)}
+.btn-o{border-color:rgba(255,255,255,.7)}
+.eyebrow::before{content:'';display:inline-block;width:26px;height:2px;background:currentColor;vertical-align:middle;margin-right:12px}
+.head.c .eyebrow::before{display:none}
+.card{border-top:3px solid transparent}
+.card:hover{border-top-color:var(--acc)}
+.pill.on{background:#0b2545;border-color:#0b2545;color:#fff}
+.stats b{color:#35d4c7}
+.s-a .stats b,.s-b .stats b{color:var(--acc)}
+.step b{color:#c9d6e6}
+.cta{background:linear-gradient(120deg,#0b2545 0%,#0e3b66 100%);color:#fff;--ink:#fff;--ink2:#cbd7e6}
+.cta .btn-p{background:#00b3a6}
+.cta .btn-o{border-color:rgba(255,255,255,.6)}
+.bigtext span:nth-child(odd){color:var(--acc)}
+.chip{border:1px solid var(--line-d)}
+.tile .cap{background:linear-gradient(transparent,rgba(6,20,40,.88))}
+.band{box-shadow:var(--shadow)}
+.ccard svg{color:#008f87}
+.fbar{opacity:.7}
+
+.hero .eyebrow::before{display:none}
