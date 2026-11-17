@@ -70,6 +70,6 @@ footer{border-top:3px solid transparent;border-image:var(--grad-brand) 1}
   .nav .links{border:1px solid rgba(255,255,255,.14);top:calc(100% + 8px);border-radius:24px;background:#0d2033}
 }
 
-.name-card{background:linear-gradient(180deg,#173651,#12304a)}
-.name-card:hover{border-color:rgba(255,191,24,.6)}
-.name-card svg{color:#ffbf18}
+.svc-cell h3{color:#fff}
+.svc-cell:hover{background:rgba(255,255,255,.05)}
+.tone-gold{color:#ffbf18}.tone-purple{color:#ad98cb}.tone-teal{color:#27c9bf}

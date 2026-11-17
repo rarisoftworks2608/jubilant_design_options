@@ -85,6 +85,4 @@ footer{border-top:4px solid transparent;border-image:var(--grad-brand) 1}
   .nav .links a.on::after{display:none}
 }
 
-.name-card{padding:30px 32px;border-radius:2px}
-.name-card h3{font-weight:500;font-size:clamp(22px,2vw,27px)}
-.name-card svg{color:var(--coral)}
+.svc-cell h3{font-weight:600;letter-spacing:.16em}
