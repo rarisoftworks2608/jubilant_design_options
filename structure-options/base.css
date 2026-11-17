@@ -97,6 +97,14 @@ h1,h2{text-wrap:balance}
 .photo{border-radius:var(--r);overflow:hidden}
 .photo img{width:100%}
 
+/* name-only service cards (What we do) */
+.names{gap:22px}
+.name-card{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:118px;padding:30px 34px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);transition:.3s}
+.name-card h3{font-size:clamp(20px,1.9vw,25px);margin:0}
+.name-card svg{width:22px;height:22px;flex:none;color:var(--acc);transition:.3s}
+.name-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--acc)}
+.name-card:hover svg{transform:translateX(6px)}
+
 /* stats */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
 .stats.n3{grid-template-columns:repeat(3,1fr)}

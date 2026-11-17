@@ -55,3 +55,7 @@ details.faq summary::after{color:var(--coral)}
 footer{border-top:4px solid transparent;border-image:var(--grad-brand) 1}
 .social a:hover{background:var(--grad-cta);border-color:transparent;color:#152f49}
 .fbar{opacity:.7}
+
+.name-card{border-left:4px solid transparent}
+.name-card:hover{border-left-color:var(--coral);border-color:var(--line);border-left-color:var(--coral)}
+.name-card svg{color:var(--coral)}
