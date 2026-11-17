@@ -22,7 +22,7 @@ body{letter-spacing:.005em}
 .site-header{background:var(--bg);border-bottom:1px solid var(--line)}
 .site-header::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:3px;background:var(--grad-brand)}
 .nav{flex-direction:column;gap:0;padding-top:22px;padding-bottom:0}
-.nav .logo img{height:50px;filter:url(#navy-logo)}
+.nav .logo img{height:50px;filter:url(#brand-logo)}
 .nav .links{margin:16px 0 0;width:100%;justify-content:center;gap:34px;border-top:1px solid var(--line);padding:6px 0}
 .nav .links a{padding:12px 4px;font:500 13.5px/1 var(--body);letter-spacing:.2em;text-transform:uppercase;border-radius:0;position:relative}
 .nav .links a.on{color:var(--coral-text)}
@@ -86,3 +86,5 @@ footer{border-top:4px solid transparent;border-image:var(--grad-brand) 1}
 }
 
 .svc-cell h3{font-weight:600;letter-spacing:.16em}
+
+.card .frame{border-radius:2px}

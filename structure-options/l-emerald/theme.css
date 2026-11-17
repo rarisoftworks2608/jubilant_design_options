@@ -1,0 +1,19 @@
+/* Option L - Boardroom Emerald: the same design as K in a different palette (deep emerald, gold, terracotta). Layout rules: ../boardroom.css */
+:root{
+  --disp:'Plus Jakarta Sans','Segoe UI',sans-serif;--body:'Plus Jakarta Sans','Segoe UI',sans-serif;
+  --bg:#ffffff;--card:#ffffff;
+  --on-dark:#ffffff;--on-dark2:rgba(255,255,255,.74);--line-d:rgba(255,255,255,.16);--card-d:rgba(255,255,255,.06);
+  --acc:var(--hi-text);--on-acc:#fff;--btn-bg:var(--grad-cta);--btn-fg:var(--dark);
+  --r:10px;--rbtn:8px;--rpill:8px;--hw:800;--hls:-.03em;
+  --hero-shade:linear-gradient(97deg,rgba(var(--shade),.92) 0%,rgba(var(--shade),.7) 40%,rgba(var(--shade),.35) 70%,rgba(var(--shade),.6) 100%),linear-gradient(180deg,rgba(var(--shade),.5) 0%,rgba(var(--shade),.1) 40%,rgba(var(--shade),.85) 100%);
+  --hero-pt:96px;--menu-bg:#fff;--foot-fg:rgba(255,255,255,.78);
+  /* palette */
+  --hi:#b98a2b;--hi-text:#8a6414;--lite:#f0cd73;--sec1:#1f7a5c;--sec2:#c0573a;
+  --t1:#c0573a;--t2:#d1a23c;--t3:#1f7a5c;--t4:#7a8f3a;
+  --dark:#0f3b30;--dark2:#17594a;--shade:7,31,24;--tint-hi:#fbf3df;
+  --tint:#f4f7f4;--ink:#0f3b30;--ink2:#4f6159;--mute:#5f7168;--line:#dfe7e2;
+  --grad-brand:linear-gradient(90deg,#f0cd73 0%,#c0573a 33%,#1f7a5c 66%,#0f3b30 100%);
+  --grad-cta:linear-gradient(96deg,#f0cd73 0%,#c9962f 100%);
+  --btn-shadow:0 12px 28px -10px rgba(201,150,47,.6);--shadow:0 24px 50px -28px rgba(15,59,48,.45);
+  --foot-bg:#0a2820;--foot-h:#f0cd73;
+}
