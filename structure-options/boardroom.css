@@ -1,7 +1,5 @@
 /* Boardroom layout rules shared by options K (Navy) and L (Gold). Colours come from each theme.css. */
 .s-d{--acc:var(--lite)}
-.topbar{background:var(--dark);color:rgba(255,255,255,.85)}
-.topbar b{color:var(--lite);font-weight:600}
 .site-header{background:rgba(255,255,255,.96);backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line);box-shadow:0 14px 30px -26px rgba(var(--shade),.6)}
 .site-header::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:3px;background:var(--grad-brand)}
 .nav{padding-block:14px}

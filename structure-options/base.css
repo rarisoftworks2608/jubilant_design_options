@@ -36,11 +36,7 @@ h1,h2{text-wrap:balance}
 .head p{color:var(--ink2);margin-top:18px;font-size:17px}
 .head.c{margin-inline:auto;text-align:center}
 
-/* top bar + header */
-.topbar{font-size:13px}
-.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-block:9px}
-.topbar a{opacity:.92}.topbar a:hover{opacity:1}
-.topbar .l,.topbar .r{display:flex;gap:26px;flex-wrap:wrap}
+/* header */
 .site-header{position:sticky;top:0;z-index:60}
 .nav{display:flex;align-items:center;gap:32px}
 .nav .logo img{height:42px;width:auto}
@@ -256,7 +252,6 @@ footer li a:hover{color:var(--foot-h);opacity:1}
   .stats{grid-template-columns:repeat(2,1fr);row-gap:30px}
   .head.row{flex-direction:column;align-items:flex-start;gap:20px}
   .sec{padding:72px 0}
-  .topbar .r{display:none}
 }
 @media(max-width:640px){
   .g2,.g3,.g4,.ccards,.steps,.fgrid{grid-template-columns:1fr}
@@ -271,5 +266,4 @@ footer li a:hover{color:var(--foot-h);opacity:1}
   .hero-inner{padding-top:120px;padding-bottom:70px}
   .band .cap{padding:50px 22px 22px}
   .cta .lines{gap:26px}
-  .topbar .l{gap:16px;font-size:12px}
 }

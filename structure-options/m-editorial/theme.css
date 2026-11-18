@@ -15,10 +15,6 @@
 }
 .s-d{--acc:#ffbf18}
 body{letter-spacing:.005em}
-.topbar{background:#152f49;color:rgba(255,255,255,.85);text-align:center}
-.topbar .wrap{justify-content:center}
-.topbar .r{display:none}
-.topbar b{color:#ffbf18;font-weight:500}
 .site-header{background:var(--bg);border-bottom:1px solid var(--line)}
 .site-header::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:3px;background:var(--grad-brand)}
 .nav{flex-direction:column;gap:0;padding-top:22px;padding-bottom:0}
