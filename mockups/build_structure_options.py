@@ -7,6 +7,7 @@ from PIL import Image
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.normpath(os.path.join(HERE, '..', 'structure-options'))
 SITE = os.path.normpath(os.path.join(HERE, '..', '..', 'jubilant-events'))
+VER = '3'
 IMG = '../images/'
 VID = '../videos/'
 
@@ -57,7 +58,7 @@ SVC_STRIP = [
 ]
 
 def head(th, title, depth_css='theme.css'):
-    shared = f'\n<link rel="stylesheet" href="../{th["shared"]}">' if th.get('shared') else ''
+    shared = f'\n<link rel="stylesheet" href="../{th["shared"]}?v={VER}">' if th.get('shared') else ''
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -66,8 +67,8 @@ def head(th, title, depth_css='theme.css'):
 <title>{title} | Jubilant Events &amp; Productions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family={th['fonts']}&display=swap">
-<link rel="stylesheet" href="../base.css">{shared}
-<link rel="stylesheet" href="{depth_css}">
+<link rel="stylesheet" href="../base.css?v={VER}">{shared}
+<link rel="stylesheet" href="{depth_css}?v={VER}">
 </head>
 <body class="t-{th['letter'].lower()}">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="brand-logo" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 {th['logo'][0]}  0 0 0 0 {th['logo'][1]}  0 0 0 0 {th['logo'][2]}  0 0 0 1 0"/></filter></svg>
@@ -114,7 +115,7 @@ def footer():
   </div>
   <div class="fbar"><span>&copy; 2026 Jubilant Events &amp; Productions. All rights reserved.</span><span>Powered by <a href="https://rarisoftworks.com" target="_blank" rel="noopener">RaRi Softworks</a></span></div>
 </div></footer>
-<script src="../site.js"></script>
+<script src="../site.js?v={VER}"></script>
 </body></html>
 '''
 
@@ -190,13 +191,16 @@ def work_card(p):
     return f'<article class="card" data-cat="{key}">{frame(im, alt)}<div class="body"><span class="cat">{cat}</span><h3>{t}</h3>{sub}</div></article>'
 
 # ---------------------------------------------------------------- pages
-INTRO = f'''<script>(function(){{var d=document.documentElement,s=0;try{{s=sessionStorage.getItem('jubilantIntro')==='1';sessionStorage.setItem('jubilantIntro','1')}}catch(e){{}}
-if(!s&&!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('intro')}})();</script>
+def intro(th):
+    # Shows every time the design is opened from outside (chooser, link, new tab, reload);
+    # skipped only when you come back to Home from another page of the same design.
+    return f'''<script>(function(){{var d=document.documentElement,r=document.referrer||'';
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&r.indexOf('/{th['key']}/')<0)d.classList.add('intro')}})();</script>
 <div class="loader" id="loader" aria-hidden="true"><div class="lg"><img src="{IMG}logo-transparent.png" alt="" width="615" height="199"><i></i><small>Event management &amp; production</small></div></div>
 '''
 
 def page_home(th):
-    h = INTRO + header('index.html')
+    h = intro(th) + header('index.html')
     h += f'''<section class="hero">
   <video autoplay muted loop playsinline preload="metadata" poster="{IMG}events/reel-poster.jpg" aria-label="Highlights from celebrity and corporate events managed by Jubilant at Seasons Mall, Pune"><source src="{VID}jubilant-reel.mp4" type="video/mp4"></video>
   <div class="wrap hero-inner">
