@@ -190,8 +190,13 @@ def work_card(p):
     return f'<article class="card" data-cat="{key}">{frame(im, alt)}<div class="body"><span class="cat">{cat}</span><h3>{t}</h3>{sub}</div></article>'
 
 # ---------------------------------------------------------------- pages
+INTRO = f'''<script>(function(){{var d=document.documentElement,s=0;try{{s=sessionStorage.getItem('jubilantIntro')==='1';sessionStorage.setItem('jubilantIntro','1')}}catch(e){{}}
+if(!s&&!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('intro')}})();</script>
+<div class="loader" id="loader" aria-hidden="true"><div class="lg"><img src="{IMG}logo-transparent.png" alt="" width="615" height="199"><i></i><small>Event management &amp; production</small></div></div>
+'''
+
 def page_home(th):
-    h = header('index.html')
+    h = INTRO + header('index.html')
     h += f'''<section class="hero">
   <video autoplay muted loop playsinline preload="metadata" poster="{IMG}events/reel-poster.jpg" aria-label="Highlights from celebrity and corporate events managed by Jubilant at Seasons Mall, Pune"><source src="{VID}jubilant-reel.mp4" type="video/mp4"></video>
   <div class="wrap hero-inner">

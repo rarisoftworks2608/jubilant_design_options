@@ -18,3 +18,20 @@ document.querySelectorAll('.pills').forEach(function (bar) {
     });
   });
 });
+
+// Opening intro on the home page: logo in the middle, then the curtain lifts (once per visit)
+(function () {
+  var root = document.documentElement, loader = document.getElementById('loader');
+  if (!loader) return;
+  if (!root.classList.contains('intro')) { loader.remove(); return; }
+  var done = false;
+  function finish() {
+    if (done) return; done = true;
+    loader.classList.add('done');
+    setTimeout(function () { root.classList.remove('intro'); }, 450);
+    setTimeout(function () { loader.remove(); }, 1400);
+  }
+  function go() { setTimeout(finish, 2000); }
+  if (document.readyState === 'complete') go(); else addEventListener('load', go, { once: true });
+  setTimeout(finish, 4500); // fail-safe: never leave the page hidden behind the intro
+})();
