@@ -1,4 +1,4 @@
-"""Builds options K, L, M: the same Shaahi-style structure (6 Jubilant pages), three visual themes.
+"""Builds options K, L, M: the same reference-style structure (6 Jubilant pages), three visual themes.
 Run:  python build_structure_options.py
 Reads real photos/videos from ../../jubilant-events. Only real Jubilant facts are used."""
 import os, html
@@ -7,16 +7,16 @@ from PIL import Image
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.normpath(os.path.join(HERE, '..', 'structure-options'))
 SITE = os.path.normpath(os.path.join(HERE, '..', '..', 'jubilant-events'))
-VER = '3'
+VER = '11'
 IMG = '../images/'
 VID = '../videos/'
 
 THEMES = [
-    dict(key='k-boardroom', letter='K', name='Boardroom Navy', shared='boardroom.css', logo=('0.0824', '0.1843', '0.2863'),
+    dict(key='k-violet', letter='K', name='Boardroom Violet', shared='boardroom.css', logo=('0', '0', '0'), exact=True,
          fonts='Plus+Jakarta+Sans:wght@400;500;600;700;800'),
-    dict(key='l-gold', letter='L', name='Boardroom Gold', shared='boardroom.css', logo=('0.1098', '0.1059', '0.0980'),
+    dict(key='l-gold', letter='L', name='Boardroom Gold', shared='boardroom.css', logo=('0', '0', '0'),
          fonts='Plus+Jakarta+Sans:wght@400;500;600;700;800'),
-    dict(key='m-editorial', letter='M', name='Editorial', shared=None, logo=('0.0824', '0.1843', '0.2863'),
+    dict(key='m-editorial', letter='M', name='Editorial Indigo', shared=None, logo=('0', '0', '0'),
          fonts='Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Jost:wght@300;400;500;600'),
 ]
 NAV = [('index.html', 'Home'), ('about.html', 'About'), ('services.html', 'Services'),
@@ -136,9 +136,10 @@ CLIENTS = [('aayojan-ventures.png', 'Aayojan Ventures'), ('intrepid-control-syst
            ('nuhii.png', 'National Union of Hospitality Industry of India'), ('seasons.png', 'Seasons'),
            ('dilip-oaks-academy.png', "Dilip Oak's Academy"), ('s-monogram.png', 'Client partner'), ('hdfc-bank.png', 'HDFC Bank')]
 
-def marquee():
+def marquee(solo=False):
     one = ''.join(f'<div class="chip">{img("clients/" + f, a, lazy=False)}</div>' for f, a in CLIENTS)
-    return f'<div class="marq"><h4>Brands we\'ve worked with</h4><div class="track">{one}{one}</div></div>'
+    h = '' if solo else '<h4>Brands we\'ve worked with</h4>'
+    return f'<div class="marq{" solo" if solo else ""}">{h}<div class="track">{one}{one}</div></div>'
 
 SERVICES13 = [
     ('Celebrity Management', "Securing and coordinating celebrity appearances that elevate your event's profile.", 'events/svc-celebrity-management.jpg', 'Celebrity arrival with security escort managed by Jubilant at Seasons Mall, Pune'),
@@ -199,7 +200,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&r.indexOf('/{th['key
 <div class="loader" id="loader" aria-hidden="true"><div class="lg"><img src="{IMG}logo-transparent.png" alt="" width="615" height="199"><i></i><small>Event management &amp; production</small></div></div>
 '''
 
-def page_home(th):
+def page_home_exact(th):
     h = intro(th) + header('index.html')
     h += f'''<section class="hero">
   <video autoplay muted loop playsinline preload="metadata" poster="{IMG}events/reel-poster.jpg" aria-label="Highlights from celebrity and corporate events managed by Jubilant at Seasons Mall, Pune"><source src="{VID}jubilant-reel.mp4" type="video/mp4"></video>
@@ -211,7 +212,7 @@ def page_home(th):
   </div>
 </section>
 '''
-    # What we do: Shaahi-style split header + one slim row of 6 icon + name cells (no photos, no descriptions)
+    # What we do: reference-style split header + one slim row of 6 icon + name cells (no photos, no descriptions)
     h += sec('s-a', f'''<div class="shead"><div><span class="eyebrow">What we do</span><h2>Our <em>signature</em> services</h2></div>
 <div class="right"><p class="lede">A complete suite of event management and production capabilities, tailored to every scale and occasion.</p><a class="arrow-link" href="services.html">View all services {ARROW}</a></div></div>
 <div class="svc-strip">{''.join(f'<a class="svc-cell {tone}" href="services.html"><span class="svc-ico">{ico}</span><h3>{n}</h3></a>' for n, ico, tone in SVC_STRIP)}</div>''')
@@ -241,6 +242,62 @@ def page_home(th):
              ('Custom fabrication', 'stock/teaser-fabrication-floral-gazebo.jpg', 'Floral-dressed gazebo structure built for a celebration'), ('Canopies', 'stock/inventory-canopy.jpg', 'White canopy tent set up on a lawn for an outdoor event')]
     h += sec('s-d', f'''<div class="head row"><div><span class="eyebrow">In-house capability</span><h2>Our own fleet. <em>Our own crew.</em></h2><p>Our own fleet of production assets means faster turnarounds, tighter quality control and total reliability.</p></div><a class="arrow-link" href="production.html">View full inventory {ARROW}</a></div>
 <div class="g4">{''.join(f'<a class="tile" href="production.html">{frame(p, a)}<div class="cap"><h3>{t}</h3><span>Owned by Jubilant</span></div></a>' for t, p, a in tiles)}</div>''')
+    h += cta_block()
+    return h + footer()
+
+def hero_block(th):
+    video = f'<video autoplay muted loop playsinline preload="metadata" poster="{IMG}events/reel-poster.jpg" aria-label="Highlights from celebrity and corporate events managed by Jubilant at Seasons Mall, Pune"><source src="{VID}jubilant-reel.mp4" type="video/mp4"></video>'
+    copy = f'''<span class="eyebrow">Event management &amp; production &middot; Pune</span>
+    <h1>We create <em>experiences</em> that people remember</h1>
+    <p>From concept to completion, Jubilant Events &amp; Productions delivers seamless events, powerful experiences and professional event production.</p>
+    <div class="btns"><a class="btn btn-p" href="contact.html">Enquire now</a><a class="btn btn-o" href="projects.html">Explore our work</a></div>'''
+    if th.get('split'):   # split hero: copy on the left, framed video on the right
+        return f'''<section class="hero hero-split"><div class="wrap hs-grid"><div class="hero-inner">{copy}</div><div class="hs-media">{video}</div></div></section>
+'''
+    return f'''<section class="hero">{video}
+  <div class="wrap hero-inner">{copy}</div>
+</section>
+'''
+
+def page_home(th):
+    if th.get('exact'):
+        return page_home_exact(th)
+    h = intro(th) + header('index.html')
+    h += hero_block(th)
+    # facts bar floating over the bottom edge of the hero
+    facts = [('2017', 'Founded'), ('2018', 'Own production house'), ('100+', 'Events delivered'), ('13', 'Services')]
+    h += '<section class="facts"><div class="wrap"><div class="facts-grid">' + ''.join(f'<div><b>{a}</b><span>{b}</span></div>' for a, b in facts) + '</div></div></section>\n'
+    # What we do: split header + icon and name strip
+    h += sec('s-a', f'''<div class="shead"><div><span class="eyebrow">What we do</span><h2>Our <em>signature</em> services</h2></div>
+<div class="right"><p class="lede">A complete suite of event management and production capabilities, tailored to every scale and occasion.</p><a class="arrow-link" href="services.html">View all services {ARROW}</a></div></div>
+<div class="svc-strip">{''.join(f'<a class="svc-cell {tone}" href="services.html"><span class="svc-ico">{ico}</span><h3>{n}</h3></a>' for n, ico, tone in SVC_STRIP)}</div>''')
+    # Our story: text + in-house stage photo
+    h += sec('s-b', f'''<div class="split"><div><span class="eyebrow">Our story</span><h2>Built on experience, <em>run in-house.</em></h2>
+<p>What began in 2017 as a management company fielding vendor requests became too dependent on outside vendors to guarantee quality. So by 2018 we built our own production house.</p>
+<p>Today, Jubilant Events &amp; Productions works with clients from concept to completion: a dedicated in-house team engineering every stage, launch and summit.</p>
+<a class="btn btn-p" href="about.html">Discover more</a></div>
+<div class="story-pic">{frame('events/header-stage-setup.jpg', 'LED stage and backdrop built in-house by Jubilant')}<span class="since"><b>Since 2017</b>Pune, Maharashtra</span></div></div>''')
+    # Featured work: one lead project + three equal cards
+    lead = PROJECTS[0]
+    h += sec('s-a', f'''<div class="head row"><div><span class="eyebrow">Featured work</span><h2>Ideas in <em>action</em></h2><p>Real briefs, delivered end to end: celebrity promotions, corporate events, launches and weddings.</p></div><a class="arrow-link" href="projects.html">View all projects {ARROW}</a></div>
+<div class="lead"><div>{frame(lead[4], lead[5])}</div><div class="lead-t"><span class="cat">Lead project &middot; {lead[2]}</span><h3>Udta Teer, film promotion</h3>
+<p>Film promotion with Ayushmann Khurrana and Sara Ali Khan: a cinema meet &amp; greet with the stars, then a packed Seasons Mall atrium fan event with crowd barricading, felicitation and a dhol welcome.</p><a class="arrow-link" href="projects.html">View project {ARROW}</a></div></div>
+<div class="g3">{''.join(work_card(PROJECTS[i]) for i in (4, 12, 8))}</div>''')
+    # image band
+    h += sec('s-b', f'''<div class="band">{img('events/cta-atrium-crowd.jpg', 'Every level of the Seasons Mall atrium filled with fans at a Jubilant-managed event')}<div class="cap"><b>Packed atriums. Managed end to end.</b><span>Crowd barricading, security, stage and artists, all run by our own team.</span></div></div>''')
+    # In-house capability
+    tiles = [('Truss', 'events/teaser-truss-lights.jpg', 'Lighting truss and smoke jets over a live stage'), ('Stages', 'events/teaser-stages-atrium.jpg', 'Stage and branded backdrop built for a mall meet and greet'),
+             ('Custom fabrication', 'stock/teaser-fabrication-floral-gazebo.jpg', 'Floral-dressed gazebo structure built for a celebration'), ('Canopies', 'stock/inventory-canopy.jpg', 'White canopy tent set up on a lawn for an outdoor event')]
+    h += sec('s-d', f'''<div class="head row"><div><span class="eyebrow">In-house capability</span><h2>Our own fleet. <em>Our own crew.</em></h2><p>Our own fleet of production assets means faster turnarounds, tighter quality control and total reliability.</p></div><a class="arrow-link" href="production.html">View full inventory {ARROW}</a></div>
+<div class="g4">{''.join(f'<a class="tile" href="production.html">{frame(p, a)}<div class="cap"><h3>{t}</h3><span>Owned by Jubilant</span></div></a>' for t, p, a in tiles)}</div>''')
+    # Why choose us: heading on the left, 2 x 2 points on the right
+    why = [('Experience', 'Years of hands-on expertise across events of every size and complexity.'), ('Quality', 'Meticulous attention to detail, from concept sketches to final execution.'),
+           ('End-to-end execution', 'In-house production means full control over quality, timelines and cost.'), ('Dedicated support', 'A committed team, on call and on-ground, from planning through to the last minute.')]
+    h += sec('s-a', f'''<div class="why"><div class="why-l"><span class="eyebrow">Why choose us</span><h2>Quality service by a <em>dedicated team</em></h2><p>With the expertise and vision to turn your concept into reality, we push boundaries on every project: unique ideas that inspire, and a concept that works.</p><a class="btn btn-p" href="contact.html">Talk to our team</a></div>
+<div class="why-r">{''.join(f'<article class="card"><div class="body"><span class="num">0{i}</span><h3>{t}</h3><p>{d}</p></div></article>' for i, (t, d) in enumerate(why, 1))}</div></div>''')
+    # Brands
+    h += f'''<section class="sec s-b brands"><div class="wrap"><div class="head c"><span class="eyebrow">Trusted by</span><h2>Brands we have <em>worked with</em></h2></div></div>{marquee(True)}</section>
+'''
     h += cta_block()
     return h + footer()
 
@@ -383,9 +440,9 @@ print('copied', len(used), 'assets')
 
 
 # ---- chooser page
-OPTS = [('k-boardroom', 'K', 'Boardroom Navy', 'White and navy with coral-to-saffron gradient buttons (the Shaahi palette). Top contact bar, square-edged cards, same-size photo cards.'),
-        ('l-gold', 'L', 'Boardroom Gold', 'The same design as K in a different palette: charcoal and antique gold with copper and burgundy accents.'),
-        ('m-editorial', 'M', 'Editorial', 'White and navy with coral and saffron accents. Serif headlines, a centred masthead menu and framed photos.')]
+OPTS = [('k-violet', 'K', 'Boardroom Violet', 'Colours taken from the violet logo: violet, lilac and deep violet with amber buttons, with the original logo in black. Full-width video hero, square-edged cards and same-size photo cards.'),
+        ('l-gold', 'L', 'Boardroom Gold', 'The colours of the current website: pearl white, champagne gold and charcoal, with a home page order of its own and the original logo in black.'),
+        ('m-editorial', 'M', 'Editorial Indigo', 'White and indigo with mint, lavender and violet accents. Serif headlines, a centred masthead menu and framed photos.')]
 PG = [('index', 'Home'), ('about', 'About'), ('services', 'Services'), ('projects', 'Projects'), ('production', 'Production'), ('contact', 'Contact')]
 cards = ''
 for k, l, n, d in OPTS:
@@ -402,6 +459,5 @@ h2{font-size:26px;margin:6px 0 8px}p{color:#555;font-size:15px}.lk{display:flex;
 open(os.path.join(OUT, 'index.html'), 'w', encoding='utf-8').write(
     '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">\n'
     '<title>Jubilant Events | Website structure options</title>\n<style>\n' + CHOOSER_CSS + '\n</style></head><body><div class="w"><h1>Website structure options</h1>\n'
-    '<p class="sub">Same section order and page structure in every option, filled with the real Jubilant content and photos. '
-    'K and L are the same Boardroom design in two colour palettes; M is the Editorial design. Open any option and use its menu to browse all six pages.</p>\n'
+    '<p class="sub">Three designs for the full website, each with the same six pages, the real Jubilant content and photos, and the original logo in black. K takes its colours from the violet logo, L uses the colours of the current website and M has a palette of its own. Open any option and use its menu to browse all six pages.</p>\n'
     '<div class="grid">\n' + cards + '</div></div></body></html>')

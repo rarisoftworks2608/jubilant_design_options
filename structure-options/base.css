@@ -1,4 +1,4 @@
-/* Shared structure for options K, L, M (Shaahi-style section order, Jubilant content).
+/* Shared structure for options K, L, M (reference-style section order, Jubilant content).
    Each theme folder only sets colours, fonts, radii and header/hero treatment. */
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -92,14 +92,14 @@ h1,h2{text-wrap:balance}
 .tile .cap span{font-size:13px;opacity:.85}
 .photo{border-radius:var(--r);overflow:hidden}
 /* equal-size picture frame: every card photo sits in the same 4:3 box and is shown whole (not cropped); spare room is a blurred copy of the same photo */
-.frame{position:relative;aspect-ratio:4/3;overflow:hidden;background:#0b1c2f}
+.frame{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--foot-bg,#0b1c2f)}
 .frame .fill{position:absolute;left:-24px;top:-24px;width:calc(100% + 48px);height:calc(100% + 48px);object-fit:cover;filter:blur(22px) brightness(.8)}
 .frame img:not(.fill){position:relative;display:block;width:100%;height:100%;object-fit:contain}
 .g3>.card,.g4>.card{display:flex;flex-direction:column}
 .card>.body{flex:1}
 .photo img{width:100%}
 
-/* What we do: Shaahi-style split header + icon/name strip */
+/* What we do: reference-style split header + icon/name strip */
 .shead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);gap:clamp(20px,4vw,64px);align-items:start;margin-bottom:56px}
 .shead .right{display:flex;flex-direction:column;gap:18px;align-items:flex-start}
 .shead .lede{color:var(--ink2);font-size:17px}
@@ -286,3 +286,58 @@ html.intro,html.intro body{overflow:hidden}
 html.intro .hero-inner>*{opacity:0;transform:translateY(24px)}
 @media(max-width:640px){.lg img{height:62px}.lg small{letter-spacing:.26em;font-size:9.5px}.lg i{animation-name:lglinem}@keyframes lglinem{to{width:140px}}}
 @media(prefers-reduced-motion:reduce){.loader{display:none!important}html.intro .hero-inner>*{opacity:1;transform:none}html.intro,html.intro body{overflow:auto}}
+
+
+/* ---------- home page, own structure (not a copy of the reference site) ---------- */
+/* facts bar floating over the bottom of the hero */
+.facts{position:relative;z-index:5;margin-top:-72px;padding:0}
+.facts-grid{display:grid;grid-template-columns:repeat(4,1fr);background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.facts-grid>div{padding:30px 24px;text-align:center;border-right:1px solid var(--line)}
+.facts-grid>div:last-child{border-right:0}
+.facts b{display:block;font:var(--stat-w,700) clamp(32px,3.6vw,50px)/1 var(--disp);letter-spacing:-.03em;color:var(--acc)}
+.facts span{display:block;margin-top:10px;font-size:13.5px;color:var(--ink2);letter-spacing:.05em}
+.facts + .sec{padding-top:120px}
+/* our story picture */
+.story-pic{position:relative}
+.story-pic .frame{border-radius:var(--r);box-shadow:var(--shadow)}
+.since{position:absolute;left:-22px;bottom:34px;background:var(--dark);color:#fff;padding:18px 24px;border-radius:var(--r);font-size:13px;letter-spacing:.06em;line-height:1.4;box-shadow:var(--shadow)}
+.since b{display:block;font:var(--hw,700) 22px/1.1 var(--disp);letter-spacing:-.01em;margin-bottom:3px;color:var(--lite,var(--pop,#fff))}
+/* featured work: lead project */
+.lead{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(24px,4vw,64px);align-items:center;margin-bottom:44px}
+.lead .frame{border-radius:var(--r);box-shadow:var(--shadow)}
+.lead-t h3{font-size:clamp(26px,2.8vw,38px);margin-bottom:14px}
+.lead-t p{color:var(--ink2);font-size:17px;margin-bottom:22px}
+/* why choose us */
+.why{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,6vw,88px);align-items:start}
+.why-l p{color:var(--ink2);margin:20px 0 30px;font-size:17px}
+.why-r{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.why-r .card .body{padding:28px 26px 30px}
+/* brands */
+.brands{padding-bottom:90px}
+.brands .head{margin-bottom:44px}
+.marq.solo{margin:0;padding:0;border:0}
+.s-a .chip,.s-b .chip{border:1px solid var(--line)}
+/* split hero (option L): headline on the left, framed video on the right */
+.hero-split{background:linear-gradient(120deg,var(--dark),var(--dark2));min-height:0;align-items:center;padding:84px 0 130px}
+.hero-split::after{display:none}
+.hero-split .hs-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(28px,4.5vw,72px);align-items:center;position:relative;z-index:2}
+.hero-split .hero-inner{padding:0}
+.hero-split h1{font-size:clamp(38px,4.6vw,68px)}
+.hs-media{position:relative;aspect-ratio:4/3;border-radius:var(--r);overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.18)}
+.hs-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@media(max-width:980px){
+  .facts-grid{grid-template-columns:repeat(2,1fr)}
+  .facts-grid>div:nth-child(2){border-right:0}
+  .facts-grid>div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .why,.lead{grid-template-columns:1fr}
+  .since{left:14px}
+  .hero-split{padding:56px 0 110px}
+  .hero-split .hs-grid{grid-template-columns:1fr}
+  .hs-media{aspect-ratio:16/10}
+}
+@media(max-width:640px){
+  .facts{margin-top:-56px}
+  .facts + .sec{padding-top:90px}
+  .facts-grid>div{padding:22px 12px}
+  .why-r{grid-template-columns:1fr}
+}

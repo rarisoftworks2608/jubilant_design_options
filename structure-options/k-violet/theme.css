@@ -1,0 +1,19 @@
+/* Option K - Boardroom Violet: colours taken from the violet logo (violet, lilac, deep violet) with an amber highlight. Layout rules: ../boardroom.css */
+:root{
+  --disp:'Plus Jakarta Sans','Segoe UI',sans-serif;--body:'Plus Jakarta Sans','Segoe UI',sans-serif;
+  --bg:#ffffff;--card:#ffffff;
+  --on-dark:#ffffff;--on-dark2:rgba(255,255,255,.78);--line-d:rgba(255,255,255,.18);--card-d:rgba(255,255,255,.07);
+  --acc:var(--hi-text);--on-acc:#fff;--btn-bg:var(--grad-cta);--btn-fg:var(--dark);
+  --r:10px;--rbtn:8px;--rpill:8px;--hw:800;--hls:-.03em;
+  --hero-shade:linear-gradient(97deg,rgba(var(--shade),.9) 0%,rgba(var(--shade),.66) 40%,rgba(var(--shade),.3) 70%,rgba(var(--shade),.55) 100%),linear-gradient(180deg,rgba(var(--shade),.45) 0%,rgba(var(--shade),.08) 40%,rgba(var(--shade),.8) 100%);
+  --hero-pt:96px;--menu-bg:#fff;--foot-fg:rgba(255,255,255,.8);
+  /* palette: violet #6a3fc4 (logo), deep violet #2b1566, lilac #b9a1f2 / #f1eafd, amber #ffb81c */
+  --hi:#6a3fc4;--hi-text:#5a30b4;--lite:#ffb81c;--sec1:#7c4bd1;--sec2:#8a52d6;
+  --t1:#6a3fc4;--t2:#d98a00;--t3:#4d5bd8;--t4:#a14fd0;
+  --dark:#2b1566;--dark2:#46248f;--shade:30,12,72;--tint-hi:#f1eafd;
+  --tint:#f4effd;--ink:#25124f;--ink2:#5b5278;--mute:#665e82;--line:#e5dff2;
+  --grad-brand:linear-gradient(90deg,#ffb81c 0%,#6a3fc4 55%,#b9a1f2 100%);
+  --grad-cta:linear-gradient(96deg,#ffcf4a 0%,#ffa31a 100%);
+  --btn-shadow:0 12px 28px -10px rgba(106,63,196,.5);--shadow:0 24px 50px -28px rgba(43,21,102,.45);
+  --foot-bg:#1a0c42;--foot-h:#ffb81c;
+}
